@@ -1,5 +1,5 @@
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,11 +15,11 @@ public class Notification {
     
     private String from;
     private String description;
-    private Date timeCreated;
+    private LocalDateTime timeCreated;
     
-    public Notification(String description, Date timeCreated, String from) {
+    public Notification(String description, String from) {
         this.description = description;
-        this.timeCreated = timeCreated;
+        this.timeCreated = LocalDateTime.now();
         this.from = from;
     }
     
@@ -27,7 +27,7 @@ public class Notification {
         return description;
     }
     
-    public Date getTimeCreated() {
+    public LocalDateTime getTimeCreated() {
         return timeCreated;
     }
     
