@@ -1,4 +1,4 @@
-import java.awt.event.ActionListener;
+import java.awt.event.ChangeListener;
 import java.util.ArrayList;
 
 public class Account {
@@ -8,7 +8,7 @@ public class Account {
     private String avatar;
     private String nickname;
     private Posts postsMade;
-    private ArrayList<ActionListener> listeners;
+    private ArrayList<ChangeListener> listeners;
     //private Listing following;
     //private Listing followers;
     private Notifications notifs;
@@ -22,7 +22,7 @@ public class Account {
         this.postsMade = new Posts();
         //this.following
         //this.followers
-        this.notifs = new ArrayList<ActionListener>();
+        this.notifs = new ArrayList<ChangeListener>();
     }
     public boolean checkPassword(String pass) {
         return this.password.equals(pass);
@@ -63,11 +63,14 @@ public class Account {
 
     // Extra Methods
 
-    public void follow(Account acc, ActionListener listener) {
+    public void follow(Account acc, ChangeListener listener) {
             // Add user to followers array
             listeners.add(listener);
             // Notify user of new follower
             this.notifs.add(new Notification("New Follower", acc.getNickname()));
+    }
+    public void addNotification(Notification n) {
+        this.notifs.add(n);
     }
 
 
