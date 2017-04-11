@@ -1,5 +1,5 @@
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /*
@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class Comment {
     
-    public String from;
-    public String messageBody;
-    public Date timeCreated;
-    public List likedBy;
+    private String from;
+    private String messageBody;
+    private LocalDateTime timeCreated;
+    private List likedBy;
     
-    public Comment(String from, String messageBody, Date timeCreated) {
+    public Comment(String from, String messageBody) {
         this.from = from;
         this.messageBody = messageBody;
-        this.timeCreated = timeCreated;
+        this.timeCreated = LocalDateTime.now();
     }
     
     public String getFrom() {
@@ -33,7 +33,7 @@ public class Comment {
         return messageBody;
     }
     
-    public Date getTimeCreated() {
+    public LocalDateTime getTimeCreated() {
         return timeCreated;
     }
     
