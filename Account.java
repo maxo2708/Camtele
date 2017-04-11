@@ -11,7 +11,7 @@ public class Account {
     private ArrayList<ActionListener> listeners;
     //private Listing following;
     //private Listing followers;
-    //private Notifications notifs;
+    private Notifications notifs;
 
     public Account(String username, String password) {
         this.username = username;
@@ -22,7 +22,7 @@ public class Account {
         this.postsMade = new Posts();
         //this.following
         //this.followers
-        //this.notifs
+        this.notifs = new ArrayList<ActionListener>();
     }
     public boolean checkPassword(String pass) {
         return this.password.equals(pass);
@@ -63,9 +63,11 @@ public class Account {
 
     // Extra Methods
 
-    public void follow(ActionListener listener) {
+    public void follow(Account acc, ActionListener listener) {
             // Add user to followers array
             listeners.add(listener);
+            // Notify user of new follower
+            this.notifs.add(new Notification("New Follower", acc.getNickname()));
     }
 
 
