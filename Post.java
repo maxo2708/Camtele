@@ -1,12 +1,12 @@
-import java.util.Date;
+import java.time.LocalDateTime;
 public class Post {
     String imageURI;
     String description;
-    Date timeCreated;
+    LocalDateTime timeCreated;
     public Post(String imageURI, String description) {
         this.imageURI = imageURI;
         this.description = description;
-        this.timeCreated = Date.now();
+        this.timeCreated = LocalDateTime.now();
     }
 
     // Accessors
@@ -17,7 +17,7 @@ public class Post {
     public String getDescription() {
         return this.description;
     }
-    public Date getTimeCreated() {
+    public LocalDateTime getTimeCreated() {
         return this.timeCreated;
     }
 
