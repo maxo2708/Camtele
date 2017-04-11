@@ -1,3 +1,6 @@
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 public class Account {
     private String username;
     private String password;
@@ -5,6 +8,7 @@ public class Account {
     private String avatar;
     private String nickname;
     private Posts postsMade;
+    private ArrayList<ActionListener> listeners;
     //private Listing following;
     //private Listing followers;
     //private Notifications notifs;
@@ -59,7 +63,10 @@ public class Account {
 
     // Extra Methods
 
-    // public void follow (Try a observer pattern)
+    public void follow(ActionListener listener) {
+            // Add user to followers array
+            listeners.add(listener);
+    }
 
 
 
