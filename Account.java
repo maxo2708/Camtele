@@ -12,6 +12,7 @@ public class Account {
     //private Listing following;
     //private Listing followers;
     private Notifications notifs;
+    private Posts feed;
 
     public Account(String username, String password) {
         this.username = username;
