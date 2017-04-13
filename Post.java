@@ -1,19 +1,21 @@
-import java.awt.event.ChangeListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.event.ChangeEvent;
 public class Post {
     private String imageURI;
     private String description;
     private LocalDateTime timeCreated;
     private Comments coms;
-    private ArrayList<ChangeListener> listeners;
-    public Post(String imageURI, String description) {
+    private ArrayList<CommentListener> listeners;
+    private String author;
+    // Keep track of who likes the post here
+    public Post(Account acc, String imageURI, String description) {
         this.imageURI = imageURI;
         this.description = description;
         this.timeCreated = LocalDateTime.now();
         this.coms = new Comments();
-        this.listeners = new ArrayList<ChangeListener>();
+        this.listeners = new ArrayList<CommentListener>();
+        this.author = acc.getNickname();
+        this.listeners.add(new CommentListener(acc));
     }
 
     // Accessors
@@ -27,6 +29,9 @@ public class Post {
     public LocalDateTime getTimeCreated() {
         return this.timeCreated;
     }
+    public String getAuthor() {
+        return this.author;
+    }
 
     // Mutators
 
@@ -36,10 +41,21 @@ public class Post {
     public void setDescription(String desc) {
         this.description = desc;
     }
-    //public void addComment(Account from, Comment com) {
-     //   this.coms.add(com);
-     //   for (ChangeListener listener : listeners) {
-            
-     //   }
-   // }
+    public void addComment(Comment com) {
+       this.coms.add(com);
+       for (Listener listener : listeners) {
+            listener.notify(com.getFrom());
+       }
+    }
+
+    // Extras
+    public void likePost(Account acc) {
+        // Add to list of people who liked the post here
+        for (Listener listener: listeners) {
+            listener.notify(acc.getNickname());
+        }
+    }
+    public void dislikePost(Account acc) {
+        // Remove account from likes list
+    }
 }
