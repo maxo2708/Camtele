@@ -16,4 +16,5 @@ public class Posts implements Listing<Post> {
     public Post get(int index) {
         return this.postings.get(index);
     }
+    public int size() { return this.postings.size(); }
 }

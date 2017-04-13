@@ -9,7 +9,7 @@ public class Account {
     private String nickname;
     private Posts postsMade;
     private ArrayList<ChangeListener> listeners;
-    //private Listing following;
+    private Listing following;
     //private Listing followers;
     private Notifications notifs;
     private Posts feed;

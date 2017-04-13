@@ -29,4 +29,6 @@ public class Comments implements Listing<Comment> {
     public Comment get(int index) {
         return this.comments.get(index);
     }
+
+    public int size() { return this.comments.size(); }
 }

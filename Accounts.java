@@ -16,4 +16,5 @@ public class Accounts implements Listing<Account> {
     public Account remove(int index) {
         return this.accs.remove(index);
     }
+    public int size() { return this.accs.size(); }
 }

@@ -29,4 +29,6 @@ public class Notifications implements Listing<Notification> {
     public Notification get(int index) {
         return this.notifs.get(index);
     }
+
+    public int size() { return this.notifs.size(); }
 }
