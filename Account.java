@@ -1,4 +1,4 @@
-import java.awt.event.ChangeListener;
+import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 
 public class Account {
@@ -22,7 +22,8 @@ public class Account {
         this.postsMade = new Posts();
         //this.following
         //this.followers
-        this.notifs = new ArrayList<ChangeListener>();
+        this.notifs = new Notifications();
+        this.listeners = new ArrayList<ChangeListener>();
     }
     public boolean checkPassword(String pass) {
         return this.password.equals(pass);
