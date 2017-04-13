@@ -6,7 +6,9 @@ public class Posts implements Listing<Post> {
         this.postings = new ArrayList<Post>();
     }
     public boolean add(Post p) {
-        return this.postings.add(p);
+        boolean success = this.postings.add(p);
+        // Run insertion sort
+        return success;
     }
     public Post remove(int index) {
         return this.postings.remove(index);
