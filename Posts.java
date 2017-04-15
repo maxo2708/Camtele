@@ -18,4 +18,12 @@ public class Posts implements Listing<Post>, Serializable {
         return this.postings.get(index);
     }
     public int size() { return this.postings.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Post p: postings) {
+            returns += p.toString();
+        }
+        return returns;
+    }
 }

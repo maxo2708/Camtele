@@ -32,4 +32,12 @@ public class Comments implements Listing<Comment>, Serializable {
     }
 
     public int size() { return this.comments.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Comment c : comments) {
+            returns += c.toString();
+        }
+        return returns;
+    }
 }

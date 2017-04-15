@@ -59,4 +59,10 @@ public class Post implements Serializable {
     public void dislikePost(Account acc) {
         // Remove account from likes list
     }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "Image URI: " + this.getImageURI() + "\n" +
+                "Description: " + this.getDescription();
+    }
 }

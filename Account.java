@@ -77,5 +77,11 @@ public class Account implements Serializable {
     }
 
 
+    public String toString() {
+        return "Username: " + this.getUsername() + "\n" +
+                "Nickname: " + this.getNickname() + "\n" +
+                "Bio: " + this.getBio();
+    }
+
 
 }

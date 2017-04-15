@@ -18,4 +18,12 @@ public class Accounts implements Listing<Account>, Serializable {
         return this.accs.remove(index);
     }
     public int size() { return this.accs.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Account acc : accs) {
+            returns += acc.toString();
+        }
+        return returns;
+    }
 }

@@ -53,4 +53,10 @@ public class Comment implements Serializable {
     public void setMessageBody(String newMessage) {
         this.messageBody = newMessage;
     }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "From: " + this.getFrom() + "\n" +
+                "Message: " + this.getMessageBody();
+    }
 }

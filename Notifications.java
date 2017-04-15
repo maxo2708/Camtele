@@ -32,4 +32,12 @@ public class Notifications implements Listing<Notification>, Serializable {
     }
 
     public int size() { return this.notifs.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Notification n: notifs) {
+            returns += n.toString();
+        }
+        return returns;
+    }
 }

@@ -39,5 +39,11 @@ public class Notification implements Serializable {
     public void setDescription(String d) {
         this.description = d;
     }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "From: " + this.getFrom() + "\n" +
+                "Body: " + this.getDescription();
+    }
             
 }
