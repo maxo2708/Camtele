@@ -45,5 +45,18 @@ public class Notification implements Serializable {
                 "From: " + this.getFrom() + "\n" +
                 "Body: " + this.getDescription();
     }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Notification n2 = (Notification) obj;
+        return this.getFrom().equals(n2.getFrom()) && this.getDescription().equals(n2.getDescription());
+    }
             
 }

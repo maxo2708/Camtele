@@ -65,4 +65,17 @@ public class Post implements Serializable {
                 "Image URI: " + this.getImageURI() + "\n" +
                 "Description: " + this.getDescription();
     }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Post p2 = (Post) obj;
+        return this.getImageURI().equals(p2.getImageURI()) && this.getDescription().equals(p2.getDescription());
+    }
 }

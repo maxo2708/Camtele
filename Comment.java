@@ -59,4 +59,17 @@ public class Comment implements Serializable {
                 "From: " + this.getFrom() + "\n" +
                 "Message: " + this.getMessageBody();
     }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Comment c2 = (Comment) obj;
+        return this.getFrom().equals(c2.getFrom()) && this.getMessageBody().equals((c2.getMessageBody()));
+    }
 }

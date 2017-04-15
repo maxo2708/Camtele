@@ -83,5 +83,24 @@ public class Account implements Serializable {
                 "Bio: " + this.getBio();
     }
 
+    /**
+     * Checks for equality by checking the username
+     * @param obj the object to check for equality
+     * @return whether or not the object is equal to this
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+       if (this.getClass() != obj.getClass()) {
+            return false;
+       }
+       Account acc2 = (Account) obj;
+       return acc2.getUsername().equals(this.getUsername());
+    }
+
 
 }
