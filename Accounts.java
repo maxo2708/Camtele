@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Accounts implements Listing<Account> {
+public class Accounts implements Listing<Account>, Serializable {
     private ArrayList<Account> accs;
     
     public Accounts() {

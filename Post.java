@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-public class Post {
+public class Post implements Serializable {
     private String imageURI;
     private String description;
     private LocalDateTime timeCreated;

@@ -1,7 +1,8 @@
 import javax.swing.event.ChangeListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements Serializable {
     private String username;
     private String password;
     private String bio;

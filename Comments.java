@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author kirstyn
  */
-public class Comments implements Listing<Comment> {
+public class Comments implements Listing<Comment>, Serializable {
     ArrayList<Comment> comments;
     
     public Comments() {

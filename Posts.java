@@ -1,5 +1,6 @@
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Posts implements Listing<Post> {
+public class Posts implements Listing<Post>, Serializable {
     ArrayList<Post> postings;
 
     public Posts() {

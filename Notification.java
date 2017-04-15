@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /*
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  *
  * @author kirstyn
  */
-public class Notification {
+public class Notification implements Serializable {
     
     private String from;
     private String description;

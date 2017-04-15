@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author kirstyn
  */
-public class Notifications implements Listing<Notification> {
+public class Notifications implements Listing<Notification>, Serializable {
     ArrayList<Notification> notifs;
     
     public Notifications() {

@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author kirstyn
  */
-public class Comment {
+public class Comment implements Serializable {
     
     private String from;
     private String messageBody;
