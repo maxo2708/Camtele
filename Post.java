@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-public class Post implements Serializable {
+
+public class Post implements Serializable, Comparable {
     private String imageURI;
     private String description;
     private LocalDateTime timeCreated;
@@ -58,6 +59,11 @@ public class Post implements Serializable {
     }
     public void dislikePost(Account acc) {
         // Remove account from likes list
+    }
+
+    public int compareTo(Object obj) {
+        Post p2 = (Post) obj;
+        return this.getTimeCreated().compareTo(p2.getTimeCreated());
     }
 
     public String toString() {
