@@ -15,8 +15,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button cancelButton="true" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" onAction="#pageBack" text="Return" AnchorPane.bottomAnchor="5.0" />
-                  <Text layoutX="114.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot Password" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="100.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -37,6 +36,21 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="-70.0" layoutY="91.0" prefHeight="67.0" prefWidth="161.0" spacing="15.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="15.0">
+                     <children>
+                        <TextField fx:id="unInput" promptText="Enter a username" />
+                        <PasswordField fx:id="pwdInput" promptText="Enter a password" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="-10.0" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please answer the security question:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is your favorite color?">
                            <font>
                               <Font size="18.0" />
@@ -44,14 +58,8 @@
                         </Text>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" layoutX="-70.0" layoutY="91.0" prefHeight="67.0" prefWidth="161.0" spacing="15.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="15.0">
-                     <children>
-                        <TextField fx:id="unInput" promptText="Enter your username" />
-                        <PasswordField fx:id="pwdInput" promptText="Enter your password" />
-                     </children>
-                  </VBox>
-                  <PasswordField fx:id="sqInput" layoutX="160.0" layoutY="124.0" maxWidth="161.0" prefWidth="161.0" promptText="Secuirty question answer" />
-                  <Button contentDisplay="CENTER" layoutX="312.0" layoutY="164.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="16.0" prefWidth="72.0" text="Change" textAlignment="CENTER" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+                  <PasswordField fx:id="sqInput" layoutX="50.0" layoutY="164.0" promptText="Secuirty question answer" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="50.0" />
+                  <Button contentDisplay="CENTER" layoutX="312.0" layoutY="164.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="16.0" prefWidth="72.0" text="Submit " textAlignment="CENTER" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                      <font>
                         <Font size="14.0" />
                      </font>

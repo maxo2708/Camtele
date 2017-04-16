@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -12,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -22,25 +22,41 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="search" layoutX="462.0" layoutY="31.0" promptText="Whatcha lookin for?" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="30.0" />
-                  <Text layoutX="36.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="5.0">
+                  <HBox spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+                     <children>
+                        <TextField fx:id="search1" promptText="Whatcha lookin for?" />
+                        <Button mnemonicParsing="false" onAction="#searchSelect" text="Search" />
+                     </children>
+                  </HBox>
+                  <Text layoutX="36.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <MenuBar layoutX="416.0" layoutY="13.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" onAction="#profileSelect" text="Profile" />
-                      <Menu mnemonicParsing="false" onAction="#notifSelect" text="Notifications" />
-                        <Menu mnemonicParsing="false" onAction="#logoutSelect" text="Logout" />
-                    </menus>
-                  </MenuBar>
-                  <Button layoutX="548.0" layoutY="29.0" mnemonicParsing="false" onAction="#searchSelect" text="Search" AnchorPane.rightAnchor="10.0" />
-                  <ImageView fitHeight="60.0" fitWidth="75.0" layoutX="14.0" onMouseClicked="#uploadPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#uploadPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
                      <image>
-                        <Image url="@../../../../Pictures/icon-camera-128.png" />
+                        <Image url="@../upload.png" />
                      </image>
                   </ImageView>
+                  <ButtonBar maxHeight="20.0" maxWidth="275.0" prefHeight="20.0" prefWidth="275.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#profileSelect" text="Profile">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#notifSelect" prefHeight="24.0" prefWidth="86.0" text="Notifications" textAlignment="CENTER">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#logoutSelect" text="Logout">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Button>
+                     </buttons>
+                  </ButtonBar>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

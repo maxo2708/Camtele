@@ -17,13 +17,12 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button cancelButton="true" layoutX="332.0" layoutY="9.0" mnemonicParsing="false" onAction="#pageBack" text="Return" AnchorPane.bottomAnchor="5.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="131.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="33.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Into" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="35.0">
+                  <Text layoutX="33.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Into" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="35.0">
                      <font>
                         <Font size="24.0" />
                      </font>
