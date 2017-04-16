@@ -1,4 +1,6 @@
-public class CommentListener implements Listener {
+import java.io.Serializable;
+
+public class CommentListener implements Listener, Serializable {
     Account acc;
     public CommentListener(Account acc) {
         this.acc = acc;

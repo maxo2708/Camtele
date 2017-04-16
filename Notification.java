@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /*
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  *
  * @author kirstyn
  */
-public class Notification {
+public class Notification implements Serializable {
     
     private String from;
     private String description;
@@ -37,6 +38,25 @@ public class Notification {
     
     public void setDescription(String d) {
         this.description = d;
+    }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "From: " + this.getFrom() + "\n" +
+                "Body: " + this.getDescription();
+    }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Notification n2 = (Notification) obj;
+        return this.getFrom().equals(n2.getFrom()) && this.getDescription().equals(n2.getDescription());
     }
             
 }

@@ -1,5 +1,6 @@
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Posts implements Listing<Post> {
+public class Posts implements Listing<Post>, Serializable {
     ArrayList<Post> postings;
 
     public Posts() {
@@ -16,4 +17,26 @@ public class Posts implements Listing<Post> {
     public Post get(int index) {
         return this.postings.get(index);
     }
+    public int size() { return this.postings.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Post p: postings) {
+            returns += p.toString();
+        }
+        return returns;
+    }
+
+    //public boolean equals(Object obj) {
+    //    if (this == obj) {
+    //        return true;
+    //    }
+    //    if (obj == null) {
+    //        return false;
+    //    }
+    //    if (this.getClass() != obj.getClass()) {
+    //        return false;
+    //    }
+    //    return false;
+    //}
 }

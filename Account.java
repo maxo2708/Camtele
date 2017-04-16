@@ -1,7 +1,8 @@
 import javax.swing.event.ChangeListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements Serializable {
     private String username;
     private String password;
     private String bio;
@@ -9,7 +10,7 @@ public class Account {
     private String nickname;
     private Posts postsMade;
     private ArrayList<ChangeListener> listeners;
-    //private Listing following;
+    private Listing following;
     //private Listing followers;
     private Notifications notifs;
     private Posts feed;
@@ -75,6 +76,31 @@ public class Account {
         this.notifs.add(n);
     }
 
+
+    public String toString() {
+        return "Username: " + this.getUsername() + "\n" +
+                "Nickname: " + this.getNickname() + "\n" +
+                "Bio: " + this.getBio();
+    }
+
+    /**
+     * Checks for equality by checking the username
+     * @param obj the object to check for equality
+     * @return whether or not the object is equal to this
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+       if (this.getClass() != obj.getClass()) {
+            return false;
+       }
+       Account acc2 = (Account) obj;
+       return acc2.getUsername().equals(this.getUsername());
+    }
 
 
 }

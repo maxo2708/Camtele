@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author kirstyn
  */
-public class Notifications implements Listing<Notification> {
+public class Notifications implements Listing<Notification>, Serializable {
     ArrayList<Notification> notifs;
     
     public Notifications() {
@@ -29,4 +30,26 @@ public class Notifications implements Listing<Notification> {
     public Notification get(int index) {
         return this.notifs.get(index);
     }
+
+    public int size() { return this.notifs.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Notification n: notifs) {
+            returns += n.toString();
+        }
+        return returns;
+    }
+    //public boolean equals(Object obj) {
+    //    if (this == obj) {
+    //        return true;
+    //    }
+    //    if (obj == null) {
+    //        return false;
+    //    }
+    //    if (this.getClass() != obj.getClass()) {
+    //        return false;
+    //    }
+    //    return false;
+    //}
 }

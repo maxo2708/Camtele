@@ -1,3 +1,3 @@
 public interface Listener {
-    public void noitfy(String from);
+    public void notify(String from);
 }

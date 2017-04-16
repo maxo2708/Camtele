@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author kirstyn
  */
-public class Comment {
+public class Comment implements Serializable {
     
     private String from;
     private String messageBody;
@@ -51,5 +52,24 @@ public class Comment {
     
     public void setMessageBody(String newMessage) {
         this.messageBody = newMessage;
+    }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "From: " + this.getFrom() + "\n" +
+                "Message: " + this.getMessageBody();
+    }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Comment c2 = (Comment) obj;
+        return this.getFrom().equals(c2.getFrom()) && this.getMessageBody().equals((c2.getMessageBody()));
     }
 }

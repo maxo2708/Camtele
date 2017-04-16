@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author kirstyn
  */
-public class Comments implements Listing<Comment> {
+public class Comments implements Listing<Comment>, Serializable {
     ArrayList<Comment> comments;
     
     public Comments() {
@@ -29,4 +30,26 @@ public class Comments implements Listing<Comment> {
     public Comment get(int index) {
         return this.comments.get(index);
     }
+
+    public int size() { return this.comments.size(); }
+
+    public String toString() {
+        String returns = "";
+        for (Comment c : comments) {
+            returns += c.toString();
+        }
+        return returns;
+    }
+    //public boolean equals(Object obj) {
+    //    if (this == obj) {
+    //        return true;
+    //    }
+    //    if (obj == null) {
+    //        return false;
+    //    }
+    //    if (this.getClass() != obj.getClass()) {
+    //        return false;
+    //    }
+    //    return false;
+    //}
 }

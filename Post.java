@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-public class Post {
+
+public class Post implements Serializable, Comparable {
     private String imageURI;
     private String description;
     private LocalDateTime timeCreated;
@@ -57,5 +59,29 @@ public class Post {
     }
     public void dislikePost(Account acc) {
         // Remove account from likes list
+    }
+
+    public int compareTo(Object obj) {
+        Post p2 = (Post) obj;
+        return this.getTimeCreated().compareTo(p2.getTimeCreated());
+    }
+
+    public String toString() {
+        return "Date Created: " + this.getTimeCreated().toString() + "\n" +
+                "Image URI: " + this.getImageURI() + "\n" +
+                "Description: " + this.getDescription();
+    }
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Post p2 = (Post) obj;
+        return this.getImageURI().equals(p2.getImageURI()) && this.getDescription().equals(p2.getDescription());
     }
 }
