@@ -16,7 +16,7 @@ public class Camtele {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Post p = new Post(new Account("testuser", "testpassword"), "ImageURI", "Description");
+        Post p = new Post(new Account("testuser", "testpassword",""), "ImageURI", "Description");
         
         System.out.println("ImageURI: " + p.getImageURI());
         System.out.println("Description: " + p.getDescription());
@@ -32,8 +32,8 @@ public class Camtele {
         System.out.println("Notification: " + n.getDescription() + " From: " + n.getFrom());
 
         Accounts accs = new Accounts();
-        Account a = new Account("name", "password");
-        Account a2 = new Account("name2", "password2");
+        Account a = new Account("name", "password", "");
+        Account a2 = new Account("name2", "password2", "");
         accs.add(a); accs.add(a2);
         a.getPosts().add(p);
         System.out.println("Posts made: " + a.getPosts()); //have to do toString() method so this prints the post normally

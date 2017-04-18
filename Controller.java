@@ -141,7 +141,8 @@ public class Controller {
         bio.setText(currentAcc.getBio());
     }
     @FXML void createAccount(ActionEvent event) throws Exception{
-        currentAcc = new Account(unInput.getText(),pwdInput.getText());
+        // TODO: Clare to replace the empty string with actual security answer
+        currentAcc = new Account(unInput.getText(),pwdInput.getText(), "");
         accounts.add(currentAcc);
         System.out.println(sqInput.getText());
         ((Node)(event.getSource())).getScene().getWindow().hide();

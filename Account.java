@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Account implements Serializable {
     private String username;
     private String password;
+    private String securityAnswer;
     private String bio;
     private String avatar;
     private String nickname;
@@ -15,9 +16,10 @@ public class Account implements Serializable {
     private Notifications notifs;
     private Posts feed;
 
-    public Account(String username, String password) {
+    public Account(String username, String password, String securityAnswer) {
         this.username = username;
         this.password = password;
+        this.securityAnswer = securityAnswer;
         this.bio = "";
         this.avatar = "";
         this.nickname = "";
@@ -30,6 +32,7 @@ public class Account implements Serializable {
     public boolean checkPassword(String pass) {
         return this.password.equals(pass);
     }
+    public boolean checkSecurityAnswer(String ans) { return this.securityAnswer.equals(ans); }
 
     // Mutators
     public void setPassword(String password) {
