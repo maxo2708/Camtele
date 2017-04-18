@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Accounts implements Listing<Account>, Serializable {
     private ArrayList<Account> accs;
@@ -9,7 +10,9 @@ public class Accounts implements Listing<Account>, Serializable {
     }
 
     public boolean add(Account acc) {
-        return this.accs.add(acc);
+        boolean addingSuccessful = this.accs.add(acc);
+        Collections.sort(this.accs);
+        return addingSuccessful;
     }
     public Account get(int index) {
         return this.accs.get(index);
@@ -50,16 +53,25 @@ public class Accounts implements Listing<Account>, Serializable {
         }
         return returns;
     }
-    //public boolean equals(Object obj) {
-    //    if (this == obj) {
-    //        return true;
-    //    }
-    //    if (obj == null) {
-    //        return false;
-    //    }
-    //    if (this.getClass() != obj.getClass()) {
-    //        return false;
-    //    }
-    //    return false;
-    //}
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Accounts accsTest = (Accounts) obj;
+        if (this.accs.size() != accsTest.size()) {
+             return false;
+        }
+        for (int i = 0; i < this.accs.size(); i++) {
+            if (!this.accs.get(i).equals(accsTest.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

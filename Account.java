@@ -2,7 +2,7 @@ import javax.swing.event.ChangeListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account implements Serializable {
+public class Account implements Serializable, Comparable {
     private String username;
     private String password;
     private String securityAnswer;
@@ -110,6 +110,10 @@ public class Account implements Serializable {
        }
        Account acc2 = (Account) obj;
        return acc2.getUsername().equals(this.getUsername());
+    }
+    public int compareTo(Object obj) {
+        Account a2 = (Account) obj;
+        return this.username.compareTo(a2.getUsername());
     }
 
 
