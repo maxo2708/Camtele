@@ -8,6 +8,7 @@ public class Post implements Serializable, Comparable {
     private LocalDateTime timeCreated;
     private Comments coms;
     private ArrayList<CommentListener> listeners;
+    private Accounts likedBy;
     private String author;
     // Keep track of who likes the post here
     public Post(Account acc, String imageURI, String description) {
@@ -18,6 +19,7 @@ public class Post implements Serializable, Comparable {
         this.listeners = new ArrayList<CommentListener>();
         this.author = acc.getNickname();
         this.listeners.add(new CommentListener(acc));
+        this.likedBy = new Accounts();
     }
 
     // Accessors
@@ -34,6 +36,8 @@ public class Post implements Serializable, Comparable {
     public String getAuthor() {
         return this.author;
     }
+    public Comments getComments() { return this.coms; }
+    public Accounts getLikes() { return this.likedBy; }
 
     // Mutators
 
@@ -52,7 +56,7 @@ public class Post implements Serializable, Comparable {
 
     // Extras
     public void likePost(Account acc) {
-        // Add to list of people who liked the post here
+        this.likedBy.add(acc);
         for (Listener listener: listeners) {
             listener.notify(acc.getNickname());
         }

@@ -10,8 +10,8 @@ public class Account implements Serializable {
     private String nickname;
     private Posts postsMade;
     private ArrayList<ChangeListener> listeners;
-    private Listing following;
-    //private Listing followers;
+    //private Listing following;
+    private Accounts followers;
     private Notifications notifs;
     private Posts feed;
 
@@ -23,7 +23,7 @@ public class Account implements Serializable {
         this.nickname = "";
         this.postsMade = new Posts();
         //this.following
-        //this.followers
+        this.followers = new Accounts();
         this.notifs = new Notifications();
         this.listeners = new ArrayList<ChangeListener>();
     }
@@ -61,13 +61,17 @@ public class Account implements Serializable {
     public Posts getPosts() {
         return this.postsMade;
     }
-    // public Listing getFollowers()
+    public Accounts getFollowers() {
+        return this.followers;
+    }
     // public Listing getFollowing()
 
     // Extra Methods
 
     public void follow(Account acc, ChangeListener listener) {
             // Add user to followers array
+            this.followers.add(acc);
+
             listeners.add(listener);
             // Notify user of new follower
             this.notifs.add(new Notification("New Follower", acc.getNickname()));

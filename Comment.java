@@ -18,7 +18,7 @@ public class Comment implements Serializable {
     private String from;
     private String messageBody;
     private LocalDateTime timeCreated;
-    private List likedBy;
+    private Accounts likedBy;
     
     public Comment(String from, String messageBody) {
         this.from = from;
@@ -38,12 +38,12 @@ public class Comment implements Serializable {
         return timeCreated;
     }
     
-    public List getLikes() {
+    public Accounts getLikes() {
         return likedBy;
     }
     
-    public void likeComment() {
-        
+    public void likeComment(Account acc) {
+        this.likedBy.add(acc);
     }
     
     public void dislikeComment() {
