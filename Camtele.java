@@ -63,6 +63,12 @@ public class Camtele {
         catch (ClassNotFoundException e3) { e3.printStackTrace(); return; }
 
         System.out.println(accs2);
+
+        if (accs.equals(accs2)) {
+            System.out.println("Serializing Successful");
+        } else {
+            System.out.println("Error: Serialized accounts does not equal accounts");
+        }
     }
 
 
