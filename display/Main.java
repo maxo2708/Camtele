@@ -46,7 +46,7 @@ public class Main extends Application {
         }
     }
 
-    private void setBaseStage(Stage stage) { base = stage; }
+    private static void setBaseStage(Stage stage) { base = stage; }
     public static Stage getBaseStage() { return base; }
 
     public static void main(String[] args) {

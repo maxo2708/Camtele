@@ -24,7 +24,7 @@
                <children>
                   <HBox spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
                      <children>
-                        <TextField fx:id="search1" promptText="Whatcha lookin for?" />
+                        <TextField fx:id="search" promptText="Whatcha lookin for?" />
                         <Button mnemonicParsing="false" onAction="#searchSelect" text="Search" />
                      </children>
                   </HBox>
@@ -78,12 +78,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="392.0" layoutY="143.0" onMouseClicked="#image1Select" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="13.0" onMouseClicked="#image2Select" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="204.0" layoutY="143.0" onMouseClicked="#image3Select" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image4" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#image4Select" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image5" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#image5Select" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image6" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#image6Select" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="392.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="13.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="204.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image4" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image5" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image6" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <Button fx:id="tagButton" disable="true" layoutX="507.0" layoutY="296.0" mnemonicParsing="false" onAction="#followTag" text="Follow ST" />

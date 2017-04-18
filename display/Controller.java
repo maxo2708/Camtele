@@ -7,14 +7,23 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 import java.io.File;
 
 public class Controller {
 
     final FileChooser fileChooser = new FileChooser();
+    private File file;
     @FXML private TextField search;
     @FXML private Button tagButton;
+
+    @FXML private ImageView post;
+    @FXML private TextArea description;
+    @FXML private Button condLike;
+    @FXML private Label likes;
+    @FXML private Label date;
+    @FXML private Label locTag;
 
     @FXML private ImageView newImage;
     @FXML private TextArea descInput;
@@ -37,7 +46,6 @@ public class Controller {
     @FXML private Label nickname;
     @FXML private TextArea bio;
 
-
     @FXML private ImageView newPost;
     @FXML private ImageView image1;
     @FXML private ImageView image2;
@@ -53,9 +61,12 @@ public class Controller {
 
     } // varied button on user profile
 
-    @FXML void avatarSelect(MouseEvent event) {
-        File file = fileChooser.showOpenDialog(Main.getBaseStage());
+    @FXML void feedSelect(ActionEvent event) {
 
+    }
+    @FXML void avatarSelect(MouseEvent event) {
+        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
+        avatar = new ImageView(file.toURI().toString());
     }
     @FXML void followTag(ActionEvent event) {
         System.out.println(search.getText());
@@ -63,15 +74,18 @@ public class Controller {
     }
 
     @FXML void selectPhoto(MouseEvent event) {
-        File file = fileChooser.showOpenDialog(Main.getBaseStage());
+        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
+        newImage = new ImageView(file.toURI().toString());
     }
     @FXML void createPost(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
+
     }
 
     @FXML void registerSelect(ActionEvent event) throws Exception {
         Main.openNewStage("signup.fxml");
-        // how to know if register or edit? if logged in already
+        // how to know if register or edit? if logged in already;
+        // also switch with the login?
     }
     @FXML void loginSelect(ActionEvent event) throws Exception{
         Main.openNewStage("login.fxml");
@@ -87,7 +101,6 @@ public class Controller {
     }
     @FXML void logoutSelect(ActionEvent event) throws Exception{
         Main.replaceSceneContent("Unregistered.fxml");
-        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
     @FXML void notifSelect(ActionEvent event) {
         // make notif stage?
@@ -95,8 +108,11 @@ public class Controller {
     @FXML void profileSelect(ActionEvent event) throws Exception{
         Main.replaceSceneContent("userProfile.fxml");
     }
-    @FXML void forgotPasswordSelect(ActionEvent event) {
-
+    @FXML void forgotPasswordSelect(ActionEvent event) throws Exception{
+        Main.openNewStage("forgotPassword.fxml");
+    }
+    @FXML void changePassword(ActionEvent event) {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
 
@@ -115,32 +131,24 @@ public class Controller {
         Main.openNewStage("profile.fxml");
     }
 
-
-
-    @FXML void image1Select(MouseEvent event) {
-
+    @FXML void imageSelect(MouseEvent event) throws Exception{
+        Main.openNewStage("viewPost.fxml");
     }
-    @FXML void image2Select(MouseEvent event) {
-
-    }
-    @FXML void image3Select(MouseEvent event) {
-
-    }
-    @FXML void image4Select(MouseEvent event) {
-
-    }
-    @FXML void image5Select(MouseEvent event) {
-
-    }
-    @FXML void image6Select(MouseEvent event) {
-
-    }
-
 
     @FXML void displayTagged(ActionEvent event) {
         // make tagged screen
     }
-    @FXML void uploadPost(MouseEvent event) {
+
+    @FXML void uploadPost(MouseEvent event) throws Exception{
+        Main.openNewStage("post.fxml");
+
+    }
+
+    @FXML void addComment(ActionEvent event) {
+
+    }
+
+    @FXML void changeLike(ActionEvent event) {
 
     }
 
