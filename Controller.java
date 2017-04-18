@@ -139,13 +139,12 @@ public class Controller {
         username.setText(currentAcc.getUsername());
         nickname.setText(currentAcc.getNickname());
         posts.setText(currentAcc.getPosts().size() + " Posts");
-        followers.setText("0 Followers");
-        following.setText("0 Following");
+        followers.setText(currentAcc.getFollowers().size() + " Followers");
+        following.setText(currentAcc.getFollowing().size() + " Following");
         bio.setText(currentAcc.getBio());
     }
     @FXML void createAccount(ActionEvent event) throws Exception{
-        // TODO: Clare to replace the empty string with actual security answer
-        currentAcc = new Account(unInput.getText(),pwdInput.getText(), "");
+        currentAcc = new Account(unInput.getText(),pwdInput.getText(), sqInput.getText());
         accounts.add(currentAcc);
         System.out.println(sqInput.getText());
         ((Node)(event.getSource())).getScene().getWindow().hide();
