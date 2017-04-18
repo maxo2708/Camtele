@@ -115,6 +115,20 @@ public class Account implements Serializable, Comparable {
         Account a2 = (Account) obj;
         return this.username.compareTo(a2.getUsername());
     }
+    
+    public Posts getFeed(Account a) {
+        for (int i = 0; i < a.getFollowing().size(); i++) {
+            Account b = a.getFollowing().get(i);
+            feed.add(b.getPosts());
+        }
+        Collections.sort(postings, new Comparator<Post>() {
+            @Override
+            public int compare(Post p1, Post p2){
+            return p1.getTimeCreated().compareTo(p2.getTimeCreated());
+            }
+        });
+        return feed;
+    }
 
 
 }
