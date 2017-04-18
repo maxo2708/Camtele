@@ -14,6 +14,14 @@ public class Accounts implements Listing<Account>, Serializable {
     public Account get(int index) {
         return this.accs.get(index);
     }
+    public Account get(String username) {
+        for (Account acc: accs) {
+            if (acc.getUsername().equals(username)) {
+                return acc;
+            }
+        }
+        return null;
+    }
     public Account remove(int index) {
         return this.accs.remove(index);
     }
