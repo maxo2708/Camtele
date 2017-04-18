@@ -1,5 +1,3 @@
-package display;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,7 @@ public class Main extends Application {
     private static Stage base;
 
     @Override public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Unregistered.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("display/Unregistered.fxml"));
         setBaseStage(primaryStage);
         primaryStage.setTitle("Camtele");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -25,7 +23,7 @@ public class Main extends Application {
 
     @FXML public static void openNewStage(String fxml) throws Exception{
         try {
-        AnchorPane page = FXMLLoader.load(Main.class.getResource(fxml));
+        AnchorPane page = FXMLLoader.load(Main.class.getResource("display/" + fxml));
         Stage stage = new Stage();
         stage.setTitle("Camtele");
         stage.setScene(new Scene(page));
@@ -38,7 +36,7 @@ public class Main extends Application {
     }
     @FXML public static void replaceSceneContent(String fxml) throws Exception{
         try {
-            Parent page = FXMLLoader.load(Main.class.getResource(fxml));
+            Parent page = FXMLLoader.load(Main.class.getResource("display/" + fxml));
             base.setScene(new Scene(page, 600, 400));
             base.show();
         } catch (IOException e) {

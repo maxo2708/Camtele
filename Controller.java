@@ -1,5 +1,3 @@
-package display;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,11 +5,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
-
 import java.io.File;
 
 public class Controller {
+
+    Accounts accounts = new Accounts();
+    Account currentAcc = null;
 
     final FileChooser fileChooser = new FileChooser();
     private File file;
@@ -78,6 +77,10 @@ public class Controller {
         newImage = new ImageView(file.toURI().toString());
     }
     @FXML void createPost(ActionEvent event) {
+        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
+        Post post = new Post(currentAcc, file.toURI().toString(), descInput.getText());
+        currentAcc.getPosts().add(post);
+        posts.setText(currentAcc.getPosts().size() + " Posts");
         ((Node)(event.getSource())).getScene().getWindow().hide();
 
     }
@@ -91,8 +94,16 @@ public class Controller {
         Main.openNewStage("login.fxml");
     }
     @FXML void attemptLogin(ActionEvent event) throws Exception{
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        Main.replaceSceneContent("registered.fxml");
+        // Terrible Assumption: Account wanted is in first index of accounts
+        boolean loggedIn = accounts.get(0).checkPassword(pwdInput.getText());
+        if (loggedIn) {
+            currentAcc = accounts.get(0);
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            Main.replaceSceneContent("registered.fxml");
+        } else {
+            // States that password is incorrect
+        }
+
     }
     @FXML void searchSelect(ActionEvent event) {
         searchTerm.setText(search.getText());
@@ -119,13 +130,19 @@ public class Controller {
     @FXML void finishProfile(ActionEvent event) throws Exception{
         ((Node)(event.getSource())).getScene().getWindow().hide();
         Main.replaceSceneContent("userProfile.fxml");
-        System.out.println(nnInput.getText());
-        System.out.println(bioInput.getText());
-        condProfile.setText("Edit Profile");
+        currentAcc.setNickname(nnInput.getText());
+        currentAcc.setBio(bioInput.getText());
+        currentAcc.setAvatar(file.toURI().toString());
+        username.setText(currentAcc.getUsername());
+        nickname.setText(currentAcc.getNickname());
+        posts.setText(currentAcc.getPosts().size() + " Posts");
+        followers.setText("0 Followers");
+        following.setText("0 Following");
+        bio.setText(currentAcc.getBio());
     }
     @FXML void createAccount(ActionEvent event) throws Exception{
-        System.out.println(unInput.getText());
-        System.out.println(pwdInput.getText());
+        currentAcc = new Account(unInput.getText(),pwdInput.getText());
+        accounts.add(currentAcc);
         System.out.println(sqInput.getText());
         ((Node)(event.getSource())).getScene().getWindow().hide();
         Main.openNewStage("profile.fxml");
