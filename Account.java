@@ -10,7 +10,7 @@ public class Account implements Serializable {
     private String nickname;
     private Posts postsMade;
     private ArrayList<ChangeListener> listeners;
-    //private Listing following;
+    private Accounts following;
     private Accounts followers;
     private Notifications notifs;
     private Posts feed;
@@ -22,7 +22,7 @@ public class Account implements Serializable {
         this.avatar = "";
         this.nickname = "";
         this.postsMade = new Posts();
-        //this.following
+        this.following = new Accounts();
         this.followers = new Accounts();
         this.notifs = new Notifications();
         this.listeners = new ArrayList<ChangeListener>();
@@ -65,6 +65,9 @@ public class Account implements Serializable {
         return this.followers;
     }
     // public Listing getFollowing()
+    public Accounts getFollowing() {
+        return this.following;
+    }
 
     // Extra Methods
 
