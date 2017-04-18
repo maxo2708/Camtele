@@ -94,16 +94,19 @@ public class Controller {
         Main.openNewStage("login.fxml");
     }
     @FXML void attemptLogin(ActionEvent event) throws Exception{
-        // Terrible Assumption: Account wanted is in first index of accounts
-        boolean loggedIn = accounts.get(0).checkPassword(pwdInput.getText());
-        if (loggedIn) {
-            currentAcc = accounts.get(0);
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-            Main.replaceSceneContent("registered.fxml");
+        Account accAttempt = accounts.get(unInput.getText());
+        if (accAttempt != null) {
+            boolean loggedIn = accAttempt.checkPassword(pwdInput.getText());
+            if (loggedIn) {
+                currentAcc = accAttempt;
+                ((Node)(event.getSource())).getScene().getWindow().hide();
+                Main.replaceSceneContent("registered.fxml");
+            } else {
+                //TODO: State that password is incorrect
+            }
         } else {
-            // TODO: State that password is incorrect
+            // TODO: State that username does not exist
         }
-
     }
     @FXML void searchSelect(ActionEvent event) {
         searchTerm.setText(search.getText());
