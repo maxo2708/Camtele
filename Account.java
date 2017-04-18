@@ -121,12 +121,7 @@ public class Account implements Serializable, Comparable {
             Account b = a.getFollowing().get(i);
             feed.add(b.getPosts());
         }
-        Collections.sort(postings, new Comparator<Post>() {
-            @Override
-            public int compare(Post p1, Post p2){
-            return p1.getTimeCreated().compareTo(p2.getTimeCreated());
-            }
-        });
+        Collections.sort(postings)
         return feed;
     }
 
