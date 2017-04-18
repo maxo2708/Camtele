@@ -26,6 +26,10 @@ public class Posts implements Listing<Post>, Serializable {
         }
         return returns;
     }
+    
+    public void add(Posts p) {
+        this.f.add(p);
+    }
 
     //public boolean equals(Object obj) {
     //    if (this == obj) {
