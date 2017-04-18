@@ -1,6 +1,7 @@
 import javax.swing.event.ChangeListener;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Account implements Serializable, Comparable {
     private String username;
@@ -120,7 +121,6 @@ public class Account implements Serializable, Comparable {
             Account b = a.getFollowing().get(i);
             feed.add(b.getPosts());
         }
-        Collections.sort(postings)
         return feed;
     }
 

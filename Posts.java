@@ -28,8 +28,8 @@ public class Posts implements Listing<Post>, Serializable {
     }
     
     public void add(Posts ps) {
-        for (Post p : ps) {
-            this.postings.add(p);
+        for (int i = 0; i < ps.size(); i++) {
+            this.add(ps.get(i));
         }
     }
 
