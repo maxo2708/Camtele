@@ -67,6 +67,7 @@ public class Accounts implements Listing<Account>, Serializable {
         if (this.accs.size() != accsTest.size()) {
              return false;
         }
+        // Assumption: Accounts list is sorted prior to comparing indexes
         for (int i = 0; i < this.accs.size(); i++) {
             if (!this.accs.get(i).equals(accsTest.get(i))) {
                 return false;

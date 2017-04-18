@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,7 +21,9 @@ public class Comments implements Listing<Comment>, Serializable {
     }
     
     public boolean add(Comment c) {
-        return this.comments.add(c);
+        boolean addedSuccessfully = this.comments.add(c);
+        Collections.sort(this.comments);
+        return addedSuccessfully;
     }
     
     public Comment remove(int index) {
@@ -40,16 +43,26 @@ public class Comments implements Listing<Comment>, Serializable {
         }
         return returns;
     }
-    //public boolean equals(Object obj) {
-    //    if (this == obj) {
-    //        return true;
-    //    }
-    //    if (obj == null) {
-    //        return false;
-    //    }
-    //    if (this.getClass() != obj.getClass()) {
-    //        return false;
-    //    }
-    //    return false;
-    //}
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Comments comms2 = (Comments) obj;
+        if (this.comments.size() != comms2.size()) {
+            return false;
+        }
+        // Assumption: Structure is sorted before comparing indexes
+        for (int i = 0; i < this.comments.size(); i++) {
+            if (!this.comments.get(i).equals(comms2.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -3,17 +3,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author kirstyn
  */
-public class Comment implements Serializable {
+public class Comment implements Serializable, Comparable {
     
     private String from;
     private String messageBody;
@@ -71,5 +65,9 @@ public class Comment implements Serializable {
         }
         Comment c2 = (Comment) obj;
         return this.getFrom().equals(c2.getFrom()) && this.getMessageBody().equals((c2.getMessageBody()));
+    }
+    public int compareTo(Object obj) {
+        Comment c2 = (Comment) obj;
+        return this.getTimeCreated().compareTo(c2.getTimeCreated());
     }
 }

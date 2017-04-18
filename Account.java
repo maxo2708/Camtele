@@ -67,7 +67,6 @@ public class Account implements Serializable, Comparable {
     public Accounts getFollowers() {
         return this.followers;
     }
-    // public Listing getFollowing()
     public Accounts getFollowing() {
         return this.following;
     }
