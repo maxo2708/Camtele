@@ -22,8 +22,24 @@ public class Accounts implements Listing<Account>, Serializable {
         }
         return null;
     }
+    public int indexOf(String username) {
+        for (int i = 0; i < accs.size(); i++) {
+            if (accs.get(i).getUsername().equals(username)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public Account remove(int index) {
         return this.accs.remove(index);
+    }
+    public Account remove(String username) {
+        int index = this.indexOf(username);
+        if (index != -1) {
+            return this.accs.remove(index);
+        } else {
+            return null;
+        }
     }
     public int size() { return this.accs.size(); }
 

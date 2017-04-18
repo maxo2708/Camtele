@@ -63,6 +63,9 @@ public class Post implements Serializable, Comparable {
     }
     public void dislikePost(Account acc) {
         // Remove account from likes list
+        this.likedBy.remove(acc.getUsername());
+        // TODO: Remove notifier
+
     }
 
     public int compareTo(Object obj) {

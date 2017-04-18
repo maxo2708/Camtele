@@ -101,7 +101,7 @@ public class Controller {
             ((Node)(event.getSource())).getScene().getWindow().hide();
             Main.replaceSceneContent("registered.fxml");
         } else {
-            // States that password is incorrect
+            // TODO: State that password is incorrect
         }
 
     }
@@ -114,7 +114,7 @@ public class Controller {
         Main.replaceSceneContent("Unregistered.fxml");
     }
     @FXML void notifSelect(ActionEvent event) {
-        // make notif stage?
+        // TODO: make notif stage?
     }
     @FXML void profileSelect(ActionEvent event) throws Exception{
         Main.replaceSceneContent("userProfile.fxml");

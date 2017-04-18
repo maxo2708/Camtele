@@ -46,8 +46,8 @@ public class Comment implements Serializable {
         this.likedBy.add(acc);
     }
     
-    public void dislikeComment() {
-        
+    public void dislikeComment(Account acc) {
+        this.likedBy.remove(acc.getUsername());
     }
     
     public void setMessageBody(String newMessage) {
