@@ -9,30 +9,21 @@ import java.io.File;
 
 public class Controller {
 
-    Accounts accounts = new Accounts();
-    Account currentAcc = null;
-
     final FileChooser fileChooser = new FileChooser();
-    private File file;
+    private File file = null;
 
     @FXML private TextField search;
     @FXML private Label searchTerm;
-    @FXML private Button tagButton;
-    @FXML private Button tagged;
+    @FXML private Button tagButton, tagged;
 
-    @FXML private ImageView newPost;
-    @FXML private ImageView image1;
-    @FXML private ImageView image2;
-    @FXML private ImageView image3;
-    @FXML private ImageView image4;
-    @FXML private ImageView image5;
-    @FXML private ImageView image6;
+    @FXML private ImageView newPost, image1, image2, image3, image4, image5, image6;
 
     @FXML void condAction(ActionEvent event) {
+        username.setText("un");
 
     } // varied button on user profile
     @FXML void feedSelect(ActionEvent event) throws Exception{
-        Main.replaceSceneContent("registered.fxml");
+        Main.replaceBigScene("registered.fxml");
 
     }
     @FXML void followTag(ActionEvent event) {
@@ -48,13 +39,13 @@ public class Controller {
         Main.openNewStage("login.fxml");
     }
     @FXML void attemptLogin(ActionEvent event) throws Exception{
-        Account accAttempt = accounts.get(unInput.getText());
+        Account accAttempt = Main.accounts.get(unInput.getText());
         if (accAttempt != null) {
             boolean loggedIn = accAttempt.checkPassword(pwdInput.getText());
             if (loggedIn) {
-                currentAcc = accAttempt;
+                Main.currentAcc = accAttempt;
                 ((Node)(event.getSource())).getScene().getWindow().hide();
-                Main.replaceSceneContent("registered.fxml");
+                Main.replaceBigScene("registered.fxml");
             } else {
                 //TODO: State that password is incorrect
             }
@@ -64,17 +55,20 @@ public class Controller {
     }
     @FXML void searchSelect(ActionEvent event) {
         searchTerm.setText(search.getText());
-        tagButton.setText("Follow " + search.getText());
-        tagButton.setDisable(false);
+        if (Main.currentAcc != null) {
+            tagButton.setText("Follow " + search.getText());
+            tagButton.setDisable(false);
+        }
     }
     @FXML void logoutSelect(ActionEvent event) throws Exception{
-        Main.replaceSceneContent("Unregistered.fxml");
+        Main.replaceBigScene("Unregistered.fxml");
     }
     @FXML void notifSelect(ActionEvent event) {
         // todo make notif stage?
     }
     @FXML void profileSelect(ActionEvent event) throws Exception{
-        Main.replaceSceneContent("userProfile.fxml");
+        // username.setText(Main.currentAcc.getUsername());
+        Main.replaceBigScene("userProfile.fxml");
     }
 
     @FXML void forgotPasswordSelect(ActionEvent event) throws Exception{
@@ -108,42 +102,31 @@ public class Controller {
     } // navigate
 
     // Input variables for user
-    @FXML private TextField unInput;
-    @FXML private PasswordField pwdInput;
-    @FXML private PasswordField sqInput;
-    @FXML private TextField nnInput;
+    @FXML private TextField unInput, nnInput;
+    @FXML private PasswordField pwdInput, sqInput;
     @FXML private TextArea bioInput;
     @FXML private ImageView avatar;
 
     // View variables for user
     @FXML private Button condProfile;
-    @FXML private Label posts;
-    @FXML private Label followers;
-    @FXML private Label following;
-    @FXML private Label username;
-    @FXML private Label nickname;
+    @FXML private Label posts, followers, following, username, nickname;
     @FXML private TextArea bio;
 
     @FXML void createAccount(ActionEvent event) throws Exception{
-        currentAcc = new Account(unInput.getText(),pwdInput.getText(), sqInput.getText());
-        accounts.add(currentAcc);
+        Main.currentAcc = new Account(unInput.getText(),pwdInput.getText(), sqInput.getText());
+        Main.accounts.add(Main.currentAcc);
         ((Node)(event.getSource())).getScene().getWindow().hide();
-        Main.openNewStage("profile.fxml");
+        Main.replaceSmallScene("profile.fxml");
     }
     @FXML void avatarSelect(MouseEvent event) {
         file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        avatar = new ImageView(file.toURI().toString());
+        Main.currentAcc.setAvatar(file.toURI().toString()); //todo may be broken?
     }
     @FXML void finishProfile(ActionEvent event) throws Exception{
         ((Node)(event.getSource())).getScene().getWindow().hide();
-        currentAcc.setNickname(nnInput.getText());
-        currentAcc.setBio(bioInput.getText());
-        currentAcc.setAvatar(file.toURI().toString());
-        username.setText(currentAcc.getUsername());
-        nickname.setText(currentAcc.getNickname());
-        bio.setText(currentAcc.getBio());
-        condProfile.setText("Edit Profile");
-        Main.replaceSceneContent("userProfile.fxml");
+        Main.replaceBigScene("registered.fxml");
+        Main.currentAcc.setNickname(nnInput.getText());
+        Main.currentAcc.setBio(bioInput.getText());
     } // user
 
     // Input variables for posts
@@ -154,9 +137,7 @@ public class Controller {
     // View variables for post
     @FXML private ImageView post;
     @FXML private TextArea description;
-    @FXML private Label likes;
-    @FXML private Label date;
-    @FXML private Label locTag;
+    @FXML private Label likes, date, locTag;
     @FXML private Button condLike;
 
     @FXML void selectPhoto(MouseEvent event) {
@@ -165,22 +146,14 @@ public class Controller {
     }
     @FXML void createPost(ActionEvent event) {
         file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        Post post = new Post(currentAcc, file.toURI().toString(), descInput.getText());
-        currentAcc.getPosts().add(post);
-        posts.setText(currentAcc.getPosts().size() + " Posts");
+        Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText());
+        Main.currentAcc.getPosts().add(post);
+        posts.setText(Main.currentAcc.getPosts().size() + " Posts");
         ((Node)(event.getSource())).getScene().getWindow().hide();
 
     } // posts
 
-    /*@FXML public void initialize() {
-        username.setText("");
-        nickname.setText("");
-        posts.setText("0 Posts");
-        followers.setText("0 Followers");
-        following.setText("0 Following");
-        bio.setText("");
-        condProfile.setText("");
-        // todo set images? likely not
-    }*/
+    public void initialize () {
 
+    }
 }
