@@ -6,23 +6,54 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Main extends Application {
-
+    // Clare is awesome :)
     static Accounts accounts;
     static Account currentAcc;
     private static Stage base, popup;
     private static Parent root;
 
     @Override public void start(Stage primaryStage) throws Exception{
-        accounts = new Accounts();
+//        // Deserializing accounts.ser
+        try {
+            FileInputStream fileIn = new FileInputStream("accounts.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Main.accounts = (Accounts) in.readObject();
+            in.close(); fileIn.close();
+            System.out.println("Serialized data is read.");
+        }
+        catch(FileNotFoundException e) {
+            // Create a new accounts structures
+            Main.accounts = new Accounts();
+        }
+        catch (IOException e2) { e2.printStackTrace(); return; }
+        catch (ClassNotFoundException e3) { e3.printStackTrace(); return; }
+
+        if (Main.accounts == null) {
+            Main.accounts = new Accounts();
+        }
+
+        //accounts = new Accounts();
         root = FXMLLoader.load(getClass().getResource("display/Unregistered.fxml"));
         base = primaryStage;
         primaryStage.setTitle("Camtele");
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    @Override public void stop() {
+        // Serializing Accounts
+        try {
+            FileOutputStream fileOut = new FileOutputStream("accounts.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(Main.accounts);
+            out.close(); fileOut.close();
+            System.out.println("Serialized data is saved in accounts.ser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static void openNewStage(String fxml) throws Exception{

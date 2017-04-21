@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserController">
    <children>
       <SplitPane dividerPositions="0.15" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -35,11 +35,6 @@
                               <Font size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#notifSelect" prefHeight="24.0" prefWidth="86.0" text="Notifications" textAlignment="CENTER">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
                         <Button mnemonicParsing="false" onAction="#logoutSelect" text="Logout">
                            <font>
                               <Font size="11.0" />
@@ -52,7 +47,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="newPost" fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#uploadPost" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
+                  <ImageView fx:id="newPost" fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#createPost" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
                      <image>
                         <Image url="@../upload.png" />
                      </image>
@@ -84,7 +79,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Button fx:id="condProfile" mnemonicParsing="false" onAction="#condAction" text="Conditional" />
+                        <Button fx:id="condProfile" mnemonicParsing="false" onAction="#condAction" text="Edit" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="120.0" layoutY="56.0" spacing="25.0">
@@ -116,7 +111,7 @@
                         <TextArea fx:id="bio" editable="false" prefHeight="50.0" prefWidth="350.0" />
                      </children>
                   </HBox>
-                  <Button fx:id="tagged" layoutX="484.0" layoutY="296.0" mnemonicParsing="false" onAction="#displayTagged" text="Photos of User" />
+                  <Button fx:id="tagged" layoutX="448.0" layoutY="296.0" mnemonicParsing="false" onAction="#displayTagged" prefHeight="25.0" prefWidth="130.0" text="Photos of User" />
                </children>
             </AnchorPane>
         </items>

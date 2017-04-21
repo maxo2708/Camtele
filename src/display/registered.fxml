@@ -32,7 +32,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#uploadPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
+                  <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#createPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
                      <image>
                         <Image url="@../upload.png" />
                      </image>
@@ -40,11 +40,6 @@
                   <ButtonBar maxHeight="20.0" maxWidth="275.0" prefHeight="20.0" prefWidth="275.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0">
                      <buttons>
                         <Button mnemonicParsing="false" onAction="#profileSelect" text="Profile">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#notifSelect" prefHeight="24.0" prefWidth="86.0" text="Notifications" textAlignment="CENTER">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -84,7 +79,6 @@
                         <ImageView fx:id="image6" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
-                  <Button fx:id="tagButton" disable="true" layoutX="507.0" layoutY="296.0" mnemonicParsing="false" onAction="#followTag" text="Follow ST" />
                </children>
             </AnchorPane>
         </items>
