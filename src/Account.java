@@ -116,12 +116,14 @@ public class Account implements Serializable, Comparable {
         return this.username.compareTo(a2.getUsername());
     }
     
-    public Posts getFeed(Account a) {
-        for (int i = 0; i < a.getFollowing().size(); i++) {
-            Account b = a.getFollowing().get(i);
-            feed.add(b.getPosts());
+    public Posts getFeed() {
+        this.updateFeed();
+        return this.feed;
+    }
+    private void updateFeed() {
+        for (int i = 0; i < this.getFollowing().size(); i++) {
+            feed.add(this.getFollowing().get(i).getPosts());
         }
-        return feed;
     }
 
 
