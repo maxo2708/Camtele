@@ -15,6 +15,12 @@ import java.io.File;
 
 public class PostController {
 
+    private Account account;
+
+    public void setAccount (Account account) {
+        this.account = account;
+    }
+
     FileChooser fileChooser = new FileChooser();
     private File file = null;
 
@@ -29,10 +35,12 @@ public class PostController {
     // View variables for post
     @FXML private ImageView post;
     @FXML private TextArea description;
-    @FXML private Label likes, date, locTag;
+    @FXML private Label username, likes, date, locTag;
     @FXML private Button condLike;
 
-    @FXML void changeLike(ActionEvent event) {
+
+    @FXML void editPost(ActionEvent event) throws Exception{
+        Main.openNewStage("post.fxml");
 
     }
     @FXML void addComment(ActionEvent event) {
@@ -68,6 +76,7 @@ public class PostController {
     } // basics
 
     public void initialize() {
+        username.setText(account.getUsername());
         // post.setImage(); todo same image shit
         // description.setText(); todo pull image info from selected image??
 

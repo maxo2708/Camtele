@@ -51,6 +51,8 @@ public class Controller {
     }
 
     @FXML void imageSelect(MouseEvent event) throws Exception{
+        // Main.replaceBigPC("viewPost.fxml", Account );
+
         Main.openNewStage("viewPost.fxml");
     }
     @FXML void displayTagged(ActionEvent event) {
@@ -97,7 +99,6 @@ public class Controller {
         Main.replaceBigScene("Unregistered.fxml");
     }
     @FXML void profileSelect(ActionEvent event) throws Exception{
-        // condProfile.setText("Edit"); todo same null problem, work around is always treat as edit initially
         Main.replaceBigScene("userProfile.fxml");
         // image1.setImage();
         // todo set images + figure out how that would work

@@ -82,6 +82,19 @@ public class Main extends Application {
         }
     }
 
+    static void replaceBigPC(String fxml, Account account) throws Exception{
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("display/" + fxml));
+            Parent page = fxmlLoader.load();
+            PostController postController = fxmlLoader.<PostController>getController();
+            postController.setAccount(account);
+            base.setScene(new Scene(page, 600, 400));
+            base.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
