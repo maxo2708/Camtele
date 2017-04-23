@@ -24,6 +24,7 @@ public class Account implements Serializable, Comparable {
         this.bio = "";
         this.avatar = "";
         this.nickname = "";
+        this.feed = new Posts();
         this.postsMade = new Posts();
         this.following = new Accounts();
         this.followers = new Accounts();

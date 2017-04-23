@@ -10,6 +10,8 @@ import java.io.*;
 
 public class Main extends Application {
     // Clare is awesome :)
+
+    static Post currentPost;
     static Accounts accounts;
     static Account currentAcc;
     private static Stage base, popup;
@@ -82,7 +84,7 @@ public class Main extends Application {
         }
     }
 
-    static void replaceBigPC(String fxml, Account account) throws Exception{
+    /* static void replaceBigPC(String fxml, Account account) throws Exception{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("display/" + fxml));
             Parent page = fxmlLoader.load();
@@ -93,7 +95,7 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
     public static void main(String[] args) {
         launch(args);

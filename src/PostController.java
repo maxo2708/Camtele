@@ -15,22 +15,12 @@ import java.io.File;
 
 public class PostController {
 
-    private Account account;
-
-    public void setAccount (Account account) {
+    /* public void setAccount (Account account) {
         this.account = account;
-    }
-
-    FileChooser fileChooser = new FileChooser();
-    private File file = null;
+    }*/
 
     @FXML private TextField search;
     @FXML private Label searchTerm;
-
-    // Input variables for posts
-    @FXML private ImageView newImage;
-    @FXML private TextArea descInput;
-    @FXML private TextField locInput;
 
     // View variables for post
     @FXML private ImageView post;
@@ -38,26 +28,13 @@ public class PostController {
     @FXML private Label username, likes, date, locTag;
     @FXML private Button condLike;
 
-
     @FXML void editPost(ActionEvent event) throws Exception{
         Main.openNewStage("post.fxml");
-
     }
     @FXML void addComment(ActionEvent event) {
         String com = ""; // Replace with actual comment input
         int postNum = 0; // Replace with actual post number
-        Main.currentAcc.getFeed(Main.currentAcc).get(postNum).addComment(new Comment(Main.currentAcc.getUsername(), com));
-    }
-    @FXML void selectPhoto(MouseEvent event) {
-        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        newImage = new ImageView(file.toURI().toString());
-    }
-    @FXML void uploadPost(ActionEvent event) {
-        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText());
-        Main.currentAcc.getPosts().add(post);
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-
+        Main.currentAcc.getFeed().get(postNum).addComment(new Comment(Main.currentAcc.getUsername(), com));
     } // posts
 
     @FXML void searchSelect(ActionEvent event) {
@@ -72,16 +49,16 @@ public class PostController {
         Main.replaceBigScene("Unregistered.fxml");
     }
     @FXML void createPost(MouseEvent event) throws Exception{
+        Main.currentPost = null;
         Main.openNewStage("post.fxml");
     } // basics
 
     public void initialize() {
-        username.setText(account.getUsername());
-        // post.setImage(); todo same image shit
-        // description.setText(); todo pull image info from selected image??
-
-
-        //post.setImage(new Image("INSERT URI HERE"));
-
+        post.setImage(new Image(Main.currentPost.getImageURI()));
+        description.setText(Main.currentPost.getDescription());
+        username.setText(Main.currentPost.getAuthor());
+        likes.setText(Main.currentPost.getLikes().size() + " Likes");
+        date.setText(Main.currentPost.getTimeCreated().toString());
+        // todo locTag
     }
 }

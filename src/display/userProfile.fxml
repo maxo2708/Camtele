@@ -66,9 +66,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#selectImage1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#selectImage2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#selectImage3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <ImageView fx:id="avatar" fitHeight="100.0" fitWidth="100.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />

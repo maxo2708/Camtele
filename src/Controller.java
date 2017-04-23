@@ -2,23 +2,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
-
-import java.io.BufferedInputStream;
-import java.io.File;
 
 public class Controller {
 
-    final FileChooser fileChooser = new FileChooser();
-    private File file = null;
+    Posts posts;
 
-    @FXML private Button condProfile;
     @FXML private TextField search;
     @FXML private Label searchTerm;
     @FXML private Button tagButton;
     @FXML private ImageView image1, image2, image3, image4, image5, image6;
+
+    @FXML private TextField unInput;
+    @FXML private PasswordField pwdInput, sqInput;
 
     @FXML void registerSelect(ActionEvent event) throws Exception {
         Main.openNewStage("signup.fxml");
@@ -43,53 +41,58 @@ public class Controller {
             Main.openNewStage("error.fxml");
         }
     }
+
     @FXML void forgotPasswordSelect(ActionEvent event) throws Exception{
         Main.openNewStage("forgotPassword.fxml");
     }
-    @FXML void changePassword(ActionEvent event) {
+    @FXML void changePassword(ActionEvent event) throws  Exception{
+        Account account = Main.accounts.get(unInput.getText());
+        if (account != null && account.checkSecurityAnswer(sqInput.getText())) {
+            account.setPassword(pwdInput.getText());
+        } else {
+            Main.openNewStage("error.fxml"); // todo check this
+        }
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
-    @FXML void imageSelect(MouseEvent event) throws Exception{
-        // Main.replaceBigPC("viewPost.fxml", Account );
-
-        Main.openNewStage("viewPost.fxml");
-    }
-    @FXML void displayTagged(ActionEvent event) {
-        // make tagged screen
-    }
-
-    // Input variables for user
-    @FXML private TextField unInput, nnInput;
-    @FXML private PasswordField pwdInput, sqInput;
-    @FXML private TextArea bioInput;
-
-    @FXML void createAccount(ActionEvent event) throws Exception{
-        if (unInput.getText().length() > 0 && pwdInput.getText().length() > 0 && sqInput.getText().length() > 0) {
-            Main.currentAcc = new Account(unInput.getText(),pwdInput.getText(), sqInput.getText());
-            Main.accounts.add(Main.currentAcc);
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-            Main.replaceSmallScene("profile.fxml");
-        } else {
-            //TODO: Else throw some error indication
-            Main.currentAcc = new Account(unInput.getText(), pwdInput.getText(), sqInput.getText());
-            Main.accounts.add(Main.currentAcc);
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            Main.replaceSmallScene("profile.fxml");
+    @FXML void selectImage1(MouseEvent event) throws Exception{
+        System.out.println(posts);
+        if (posts.size() >= 1) {
+            Main.currentPost = posts.get(0);
+            Main.openNewStage("viewPost.fxml");
         }
     }
-    @FXML void avatarSelect(MouseEvent event) {
-        file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        Main.currentAcc.setAvatar(file.toURI().toString()); //todo may be broken? Brandon: Do you ever store this URI in a javafx variable?
-
-
+    @FXML void selectImage2(MouseEvent event) throws Exception{
+        if (posts.size() >= 2) {
+            System.out.println("Size of posts: " + posts.size());
+            Main.currentPost = posts.get(1);
+            Main.openNewStage("viewPost.fxml");
+        }
     }
-    @FXML void finishProfile(ActionEvent event) throws Exception{
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        Main.replaceBigScene("registered.fxml");
-        Main.currentAcc.setNickname(nnInput.getText());
-        Main.currentAcc.setBio(bioInput.getText());
-    } // user
+    @FXML void selectImage3(MouseEvent event) throws Exception{
+        if (posts.size() >= 3) {
+            Main.currentPost = posts.get(2);
+            Main.openNewStage("viewPost.fxml");
+        }
+    }
+    @FXML void selectImage4(MouseEvent event) throws Exception{
+        if (posts.size() >= 4) {
+            Main.currentPost = posts.get(3);
+            Main.openNewStage("viewPost.fxml");
+        }
+    }
+    @FXML void selectImage5(MouseEvent event) throws Exception{
+        if (posts.size() >= 5) {
+            Main.currentPost = posts.get(4);
+            Main.openNewStage("viewPost.fxml");
+        }
+    }
+    @FXML void selectImage6(MouseEvent event) throws Exception{
+        if (posts.size() >= 6) {
+            Main.currentPost = posts.get(5);
+            Main.openNewStage("viewPost.fxml");
+        }
+    }
 
     @FXML void searchSelect(ActionEvent event) {
         searchTerm.setText(search.getText());
@@ -104,11 +107,38 @@ public class Controller {
         // todo set images + figure out how that would work
     }
     @FXML void createPost(MouseEvent event) throws Exception{
+        Main.currentPost = null;
         Main.openNewStage("post.fxml");
     } // basics
 
-
     public void initialize () {
+        if (Main.currentAcc != null) {
+            posts = Main.currentAcc.getFeed();
+        } else {
+            // Get posts from all of the users
+            posts = new Posts();
+            for (int i = 0; i < Main.accounts.size(); i++) {
+                posts.add(Main.accounts.get(i).getPosts());
+            }
+        }
+        if (image1 != null && posts.size() >= 1) {
+            image1.setImage(new Image(posts.get(0).getImageURI()));
+            if (posts.size() >= 2) {
+                image2.setImage(new Image(posts.get(1).getImageURI()));
+                if (posts.size() >= 3) {
+                    image3.setImage(new Image(posts.get(2).getImageURI()));
+                    if (posts.size() >= 4) {
+                        image4.setImage(new Image(posts.get(3).getImageURI()));
+                        if (posts.size() >= 5) {
+                            image5.setImage(new Image(posts.get(4).getImageURI()));
+                            if (posts.size() >= 6) {
+                                image6.setImage(new Image(posts.get(5).getImageURI()));
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }

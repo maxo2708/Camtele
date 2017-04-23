@@ -71,12 +71,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="392.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="13.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="204.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image4" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image5" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <ImageView fx:id="image6" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#imageSelect" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image1" fitHeight="125.0" fitWidth="180.0" layoutX="392.0" layoutY="143.0" onMouseClicked="#selectImage1" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image2" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="13.0" onMouseClicked="#selectImage2" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image3" fitHeight="125.0" fitWidth="180.0" layoutX="204.0" layoutY="143.0" onMouseClicked="#selectImage3" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image4" fitHeight="125.0" fitWidth="180.0" layoutX="10.0" layoutY="143.0" onMouseClicked="#selectImage4" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image5" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#selectImage5" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ImageView fx:id="image6" fitHeight="125.0" fitWidth="180.0" layoutX="15.0" layoutY="143.0" onMouseClicked="#selectImage6" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>

@@ -16,8 +16,8 @@ public class Post implements Serializable, Comparable {
         this.description = description;
         this.timeCreated = LocalDateTime.now();
         this.coms = new Comments();
-        this.listeners = new ArrayList<CommentListener>();
-        this.author = acc.getNickname();
+        this.listeners = new ArrayList<>();
+        this.author = acc.getUsername();
         this.listeners.add(new CommentListener(acc));
         this.likedBy = new Accounts();
     }
