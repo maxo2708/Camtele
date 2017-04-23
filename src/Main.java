@@ -13,7 +13,7 @@ public class Main extends Application {
 
     static Post currentPost;
     static Accounts accounts;
-    static Account currentAcc;
+    static Account currentAcc, selectAcc;
     private static Stage base, popup;
     private static Parent root;
 

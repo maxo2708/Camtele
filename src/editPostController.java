@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-
 import java.io.File;
 
 public class editPostController {
@@ -22,7 +21,7 @@ public class editPostController {
 
     @FXML void selectPhoto(MouseEvent event) {
         file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        newImage.setImage(new Image(file.toURI().toString())); // todo is this weird?
+        newImage.setImage(new Image(file.toURI().toString())); // todo what is this?
     }
     @FXML void uploadPost(ActionEvent event) throws Exception{
         if (Main.currentPost == null) {
@@ -34,7 +33,7 @@ public class editPostController {
             }
         }
         ((Node)(event.getSource())).getScene().getWindow().hide();
-        Main.replaceBigScene("userProfile.fxml");
+        Main.replaceBigScene("viewPost.fxml");
     }
 
     public void initialize() {

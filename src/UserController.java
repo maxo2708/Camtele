@@ -42,8 +42,6 @@ public class UserController {
     @FXML void profileSelect(ActionEvent event) throws Exception{
         condProfile.setText("Edit");
         Main.replaceBigScene("userProfile.fxml");
-        // image1.setImage();
-        // todo set images + figure out how that would work
     }
 
     @FXML void selectImage1(MouseEvent event) throws Exception{
@@ -94,5 +92,6 @@ public class UserController {
             }
         }
         tagged.setText("Photos of " + username.getText());
+
     }
 }

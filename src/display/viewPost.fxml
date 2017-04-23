@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -42,7 +44,7 @@
                               <Font size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#logoutSelect" text="Logout">
+                        <Button fx:id="logButton" mnemonicParsing="false" onAction="#logSelect" text="Logout">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -57,8 +59,8 @@
                   <TextArea fx:id="description" editable="false" layoutX="328.0" layoutY="14.0" prefHeight="125.0" prefWidth="250.0" />
                   <HBox layoutX="390.0" layoutY="296.0" spacing="20.0">
                      <children>
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editPost" text="Edit" />
-                        <Button mnemonicParsing="false" onAction="#addComment" text="Add Comment" />
+                        <Button fx:id="editLikeButton" mnemonicParsing="false" onAction="#editLikePost" text="Edit" />
+                        <Button fx:id="commentButton" mnemonicParsing="false" onAction="#addComment" text="Add Comment" />
                      </children>
                   </HBox>
                   <HBox layoutX="43.0" layoutY="300.0" spacing="15.0">
@@ -73,6 +75,79 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <ScrollPane layoutX="328.0" layoutY="168.0" prefHeight="125.0" prefWidth="250.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="236.0">
+                           <children>
+                              <VBox layoutX="7.0" layoutY="5.0" spacing="7.0">
+                                 <children>
+                                    <TextField fx:id="comment" promptText="Add a comment" />
+                                    <HBox spacing="7.0">
+                                       <children>
+                                          <Label fx:id="user1" text="user1" />
+                                          <Label fx:id="date1" text="date1" />
+                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="comment1" text="comment1" />
+                                       </children>
+                                    </HBox>
+                                    <HBox spacing="7.0">
+                                       <children>
+                                          <Label fx:id="user2" text="user2" />
+                                          <Label fx:id="date2" text="date2" />
+                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="comment2" text="comment2" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="7.0">
+                                       <children>
+                                          <Label fx:id="user3" text="user3" />
+                                          <Label fx:id="date3" text="date3" />
+                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="comment3" text="comment3" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="7.0">
+                                       <children>
+                                          <Label fx:id="user4" text="user4" />
+                                          <Label fx:id="date4" text="date4" />
+                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="comment4" text="comment4" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="62.0" spacing="7.0">
+                                       <children>
+                                          <Label fx:id="user5" text="user5" />
+                                          <Label fx:id="date5" text="date5" />
+                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
+                                             <font>
+                                                <Font size="9.0" />
+                                             </font>
+                                          </Button>
+                                          <Label fx:id="comment5" text="comment5" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
         </items>

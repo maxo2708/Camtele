@@ -20,8 +20,6 @@ public class Controller {
 
     @FXML void registerSelect(ActionEvent event) throws Exception {
         Main.openNewStage("signup.fxml");
-        // todo how to know if register or edit? if logged in already;
-        // todo also switch with the login?
     }
     @FXML void loginSelect(ActionEvent event) throws Exception{
         Main.openNewStage("login.fxml");
@@ -103,8 +101,6 @@ public class Controller {
     }
     @FXML void profileSelect(ActionEvent event) throws Exception{
         Main.replaceBigScene("userProfile.fxml");
-        // image1.setImage();
-        // todo set images + figure out how that would work
     }
     @FXML void createPost(MouseEvent event) throws Exception{
         Main.currentPost = null;

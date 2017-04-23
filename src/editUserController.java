@@ -38,14 +38,12 @@ public class editUserController {
     }
     @FXML void finishProfile(ActionEvent event) throws Exception {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Main.replaceBigScene("registered.fxml");
+        Main.replaceBigScene("userProfile.fxml"); // todo check if okay
         if (!nnInput.getText().equals("")) {
             Main.currentAcc.setNickname(nnInput.getText());
-        }
-        if (!bioInput.getText().equals("")) {
+        } if (!bioInput.getText().equals("")) {
             Main.currentAcc.setBio(bioInput.getText());
-        }
-        if (file != null) {
+        } if (file != null) {
             Main.currentAcc.setAvatar(file.toURI().toString());
         }
     } // user
@@ -54,13 +52,12 @@ public class editUserController {
         if (Main.currentAcc != null) {
             if (!Main.currentAcc.getNickname().equals("")) {
                 nnInput.setPromptText(Main.currentAcc.getNickname());
-            }
-            if (!Main.currentAcc.getBio().equals("")) {
+            } if (!Main.currentAcc.getBio().equals("")) {
                 bioInput.setPromptText(Main.currentAcc.getBio());
+            } if (!Main.currentAcc.getAvatar().equals("")) {
+                avatar.setImage(new Image(Main.currentAcc.getAvatar())); // todo ???? who knows
             }
-            if (!Main.currentAcc.getAvatar().equals("")) {
-                avatar.setImage(new Image(Main.currentAcc.getAvatar())); // todo weird error
-            }
+            
         }
     }
 }

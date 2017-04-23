@@ -35,7 +35,7 @@
                               <Font size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#logoutSelect" text="Logout">
+                        <Button fx:id="logButton" mnemonicParsing="false" onAction="#logSelect" text="Logout">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -79,7 +79,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Button fx:id="condProfile" mnemonicParsing="false" onAction="#condAction" text="Edit" />
+                        <Button fx:id="editFollowButton" mnemonicParsing="false" onAction="#editFollowAccount" text="Edit" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="120.0" layoutY="56.0" spacing="25.0">
