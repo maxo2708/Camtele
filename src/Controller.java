@@ -107,16 +107,7 @@ public class Controller {
         Main.openNewStage("post.fxml");
     } // basics
 
-    public void initialize () {
-        if (Main.currentAcc != null) {
-            posts = Main.currentAcc.getFeed();
-        } else {
-            // Get posts from all of the users
-            posts = new Posts();
-            for (int i = 0; i < Main.accounts.size(); i++) {
-                posts.add(Main.accounts.get(i).getPosts());
-            }
-        }
+    private void setImages() {
         if (image1 != null && posts.size() >= 1) {
             image1.setImage(new Image(posts.get(0).getImageURI()));
             if (posts.size() >= 2) {
@@ -135,6 +126,17 @@ public class Controller {
                 }
             }
         }
-
+    }
+    public void initialize () {
+        if (Main.currentAcc != null) {
+            posts = Main.currentAcc.getFeed();
+        } else {
+            // Get posts from all of the users
+            posts = new Posts();
+            for (int i = 0; i < Main.accounts.size(); i++) {
+                posts.add(Main.accounts.get(i).getPosts());
+            }
+        }
+        setImages();
     }
 }

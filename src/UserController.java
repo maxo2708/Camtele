@@ -8,55 +8,58 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-
 public class UserController {
 
-    // FileChooser fileChooser = new FileChooser(); todo maybe delete
-    // private File file = null;
-
-    @FXML private TextField search;
-    @FXML private Label searchTerm;
-    @FXML private Button tagged;
-
     // View variables for user
-    @FXML private Button condProfile;
+    @FXML private Button tagged, editFollowButton, logButton;
     @FXML private Label posts, followers, following, username, nickname;
+    @FXML private TextField search;
     @FXML private TextArea bio;
-    @FXML private ImageView avatar, newPost, image1, image2, image3, image4, image5, image6;
+    @FXML private ImageView avatar, newPost, image1, image2, image3;
 
-    @FXML void condAction(ActionEvent event) throws Exception{
-        Main.openNewStage("profile.fxml");
+    @FXML void editFollowAccount(ActionEvent event) throws Exception {
+        if (Main.currentAcc.equals(Main.selectAcc)) {
+            Main.openNewStage("profile.fxml");
+        } else {
+            if (editFollowButton.getText().equals("Follow")) {
+                // todo and so on...
+            }
+        }
+
     } // varied button on user profile
 
-    @FXML void feedSelect(ActionEvent event) throws Exception{
-        Main.replaceBigScene("registered.fxml");
-
+    @FXML void feedSelect(ActionEvent event) throws Exception {
+        if (Main.currentAcc == null) {
+            Main.replaceBigScene("Unregistered.fxml");
+        } else {
+            Main.replaceBigScene("registered.fxml");
+        }
     }
     @FXML void searchSelect(ActionEvent event) {
-        searchTerm.setText(search.getText());
+        //todo open registered with search term passed
     }
-    @FXML void logoutSelect(ActionEvent event) throws Exception{
-        Main.currentAcc = null;
-        Main.replaceBigScene("Unregistered.fxml");
-    }
-    @FXML void profileSelect(ActionEvent event) throws Exception{
-        condProfile.setText("Edit");
-        Main.replaceBigScene("userProfile.fxml");
+    @FXML void logSelect(ActionEvent event) throws Exception {
+        if (Main.currentAcc == null) {
+            Main.openNewStage("login.fxml");
+        } else {
+            Main.currentAcc = null;
+            Main.replaceBigScene("Unregistered.fxml");
+        }
     }
 
-    @FXML void selectImage1(MouseEvent event) throws Exception{
+    @FXML void selectImage1(MouseEvent event) throws Exception {
         if (Main.currentAcc.getPosts().size() >= 1) {
             Main.currentPost = Main.currentAcc.getPosts().get(0);
             Main.openNewStage("viewPost.fxml");
         }
     }
-    @FXML void selectImage2(MouseEvent event) throws Exception{
+    @FXML void selectImage2(MouseEvent event) throws Exception {
         if (Main.currentAcc.getPosts().size() >= 2) {
             Main.currentPost = Main.currentAcc.getPosts().get(1);
             Main.openNewStage("viewPost.fxml");
         }
     }
-    @FXML void selectImage3(MouseEvent event) throws Exception{
+    @FXML void selectImage3(MouseEvent event) throws Exception {
         if (Main.currentAcc.getPosts().size() >= 3) {
             Main.currentPost = Main.currentAcc.getPosts().get(2);
             Main.openNewStage("viewPost.fxml");
@@ -67,31 +70,51 @@ public class UserController {
         // todo make tagged screen
     }
 
-    @FXML void createPost(MouseEvent event) throws Exception{
+    @FXML void createPost(MouseEvent event) throws Exception {
         Main.currentPost = null;
         Main.openNewStage("post.fxml");
     }
 
-    public void initialize() {
-        username.setText(Main.currentAcc.getUsername());
-        nickname.setText(Main.currentAcc.getNickname());
-        bio.setText(Main.currentAcc.getBio());
-        posts.setText(Main.currentAcc.getPosts().size() + " Posts");
-        if (!Main.currentAcc.getAvatar().equals("")) {
-            avatar.setImage(new Image(Main.currentAcc.getAvatar()));
+    private void setEverything(Account acc) {
+        username.setText(acc.getUsername());
+        nickname.setText(acc.getNickname());
+        bio.setText(acc.getBio());
+        posts.setText(acc.getPosts().size() + " Posts");
+        if (!acc.getAvatar().equals("")) {
+            avatar.setImage(new Image(acc.getAvatar()));
         }
-        followers.setText(Main.currentAcc.getFollowers().size() + " Followers");
-        following.setText(Main.currentAcc.getFollowing().size() + " Following");
-        if (Main.currentAcc.getPosts().size() >= 1) {
-            image1.setImage(new Image(Main.currentAcc.getPosts().get(0).getImageURI()));
-            if (Main.currentAcc.getPosts().size() >= 2) {
-                image2.setImage(new Image(Main.currentAcc.getPosts().get(1).getImageURI()));
-                if (Main.currentAcc.getPosts().size() >= 3) {
-                    image3.setImage(new Image(Main.currentAcc.getPosts().get(2).getImageURI()));
+        followers.setText(acc.getFollowers().size() + " Followers");
+        following.setText(acc.getFollowing().size() + " Following");
+        setImages(acc);
+    }
+    private void setImages(Account acc) {
+        if (acc.getPosts().size() >= 1) {
+            image1.setImage(new Image(acc.getPosts().get(0).getImageURI()));
+            if (acc.getPosts().size() >= 2) {
+                image2.setImage(new Image(acc.getPosts().get(1).getImageURI()));
+                if (acc.getPosts().size() >= 3) {
+                    image3.setImage(new Image(acc.getPosts().get(2).getImageURI()));
                 }
             }
         }
-        tagged.setText("Photos of " + username.getText());
+    }
 
+    public void initialize() {
+        if (Main.currentAcc == null) {
+            newPost.setDisable(true);
+            newPost.setOpacity(0);
+            editFollowButton.setDisable(true);
+            logButton.setText("Login");
+        } else {
+            if (Main.currentAcc.equals(Main.selectAcc)) {
+            setEverything(Main.currentAcc);
+            editFollowButton.setText("Edit");
+            tagged.setText("Photos of You");
+            } else {
+                setEverything(Main.selectAcc);
+                editFollowButton.setText("Follow"); // todo based on user
+                tagged.setText("Photos of " + username.getText());
+            }
+        }
     }
 }

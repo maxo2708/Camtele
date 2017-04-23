@@ -10,14 +10,12 @@ import javafx.scene.input.MouseEvent;
 
 public class PostController {
 
-    Account poster;
-
     @FXML private TextField search;
     @FXML private Label searchTerm;
 
     // View variables for post
     @FXML private ImageView post, newPost;
-    @FXML private TextField comment;
+    @FXML private TextField commInput;
     @FXML private TextArea description;
     @FXML private Label username, likes, date, locTag;
     @FXML private Button editLikeButton, logButton, commentButton;
@@ -27,7 +25,7 @@ public class PostController {
     user4, date4, comment4, user5, date5, comment5;
 
     @FXML void editLikePost(ActionEvent event) throws Exception{
-        if (poster.equals(Main.currentAcc)) {
+        if (Main.currentAcc.equals(Main.selectAcc)) {
             Main.openNewStage("post.fxml");
         } else {
             if (editLikeButton.getText().equals("Like")){
@@ -45,12 +43,12 @@ public class PostController {
 
     }
     @FXML void addComment(ActionEvent event) {
-        String com = ""; // todo Replace with actual comment input
-        int postNum = 0; // todo Replace with actual post number
-        Main.currentAcc.getFeed().get(postNum).addComment(new Comment(Main.currentAcc.getUsername(), com));
+        Main.currentPost.addComment(new Comment(Main.currentAcc.getUsername(), commInput.getText()));
     } // posts
 
-    // todo username select
+    @FXML void userSelect(MouseEvent event) throws Exception{
+        Main.replaceBigScene("userProfile.fxml");
+    }
     @FXML void searchSelect(ActionEvent event) {
         searchTerm.setText(search.getText());
     }
@@ -63,7 +61,7 @@ public class PostController {
     }
     @FXML void logSelect(ActionEvent event) throws Exception{
         if (Main.currentAcc == null) {
-            Main.openNewStage("signup.fxml");
+            Main.openNewStage("login.fxml");
         } else {
             Main.currentAcc = null;
             Main.replaceBigScene("Unregistered.fxml");
@@ -74,13 +72,17 @@ public class PostController {
         Main.openNewStage("post.fxml");
     } // basics
 
-    public void initialize() {
+    private void setEverything() {
         post.setImage(new Image(Main.currentPost.getImageURI()));
         description.setText(Main.currentPost.getDescription());
         username.setText(Main.currentPost.getAuthor());
         likes.setText(Main.currentPost.getLikes().size() + " Likes");
         date.setText(Main.currentPost.getTimeCreated().toString());
-        poster = Main.accounts.get(Main.currentPost.getAuthor());
+    }
+
+    public void initialize() {
+        setEverything();
+        Main.selectAcc = Main.accounts.get(Main.currentPost.getAuthor());
         if (Main.currentAcc == null) {
             newPost.setDisable(true);
             newPost.setOpacity(0);
@@ -90,10 +92,10 @@ public class PostController {
             logButton.setText("Login");
             // todo locTag
         } else {
-            if (Main.currentAcc.equals(poster)) {
+            if (Main.currentAcc.equals(Main.selectAcc)) {
                 editLikeButton.setText("Edit");
             } else {
-                editLikeButton.setText("Like");
+                editLikeButton.setText("Like"); // todo check like/dislike based on current user
             }
         }
     }
