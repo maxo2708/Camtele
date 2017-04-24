@@ -54,8 +54,9 @@ public class PostController {
         Main.selectAcc = Main.accounts.get(username.getText());
         Main.replaceBigScene("userProfile.fxml");
     }
-    @FXML void searchSelect(ActionEvent event) {
+    @FXML void searchSelect(ActionEvent event) throws Exception{
         searchTerm.setText(search.getText());
+
     }
     @FXML void feedSelect(ActionEvent event) throws Exception{
         if (Main.currentAcc == null) {
@@ -122,7 +123,11 @@ public class PostController {
             if (Main.currentAcc.equals(Main.selectAcc)) {
                 editLikeButton.setText("Edit");
             } else {
-                editLikeButton.setText("Like"); // todo check like/dislike based on current user
+                if (Main.currentPost.getLikes().get(Main.currentAcc.getUsername()) == null) {
+                    editLikeButton.setText("Like"); // todo check like/dislike based on current user
+                } else {
+                    editLikeButton.setText("Dislike");
+                }
             }
         }
     }

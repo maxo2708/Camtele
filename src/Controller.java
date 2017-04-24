@@ -90,8 +90,20 @@ public class Controller {
         }
     }
 
-    @FXML void searchSelect(ActionEvent event) {
-        searchTerm.setText(search.getText());
+    @FXML void searchSelect(ActionEvent event) throws Exception{
+        //searchTerm.setText(search.getText());
+        if (search.getText().charAt(0) == '@') {
+            Main.selectAcc = Main.accounts.get(search.getText().substring(1));
+            if (Main.selectAcc != null) {
+                Main.replaceBigScene("userProfile.fxml");
+            }
+        }
+        /*
+        if (Main.currentAcc != null) {
+            Main.replaceBigScene("registered.fxml");
+        } else {
+            Main.replaceBigScene("Unregistered.fxml");
+        } */
     }
     @FXML void logoutSelect(ActionEvent event) throws Exception{
         Main.currentAcc = null;
