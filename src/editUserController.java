@@ -38,7 +38,8 @@ public class editUserController {
     }
     @FXML void finishProfile(ActionEvent event) throws Exception {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Main.replaceBigScene("userProfile.fxml"); // todo check if okay
+        Main.selectAcc = Main.currentAcc; // todo check if okay
+        Main.replaceBigScene("userProfile.fxml");
         if (!nnInput.getText().equals("")) {
             Main.currentAcc.setNickname(nnInput.getText());
         } if (!bioInput.getText().equals("")) {
@@ -57,7 +58,7 @@ public class editUserController {
             } if (!Main.currentAcc.getAvatar().equals("")) {
                 avatar.setImage(new Image(Main.currentAcc.getAvatar())); // todo ???? who knows
             }
-            
+
         }
     }
 }

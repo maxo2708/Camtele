@@ -100,6 +100,7 @@ public class Controller {
         Main.replaceBigScene("Unregistered.fxml");
     }
     @FXML void profileSelect(ActionEvent event) throws Exception{
+        Main.selectAcc = Main.currentAcc;
         Main.replaceBigScene("userProfile.fxml");
     }
     @FXML void createPost(MouseEvent event) throws Exception{
