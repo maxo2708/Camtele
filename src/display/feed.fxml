@@ -27,24 +27,24 @@
                         <Button mnemonicParsing="false" onAction="#searchSelect" text="Search" />
                      </children>
                   </HBox>
-                  <Text layoutX="36.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="5.0">
+                  <Text layoutX="36.0" layoutY="19.0" onMouseClicked="#feedSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="Camtele" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#createPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
+                  <ImageView fx:id="newPost" fitHeight="50.0" fitWidth="60.0" layoutX="14.0" onMouseClicked="#createPost" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="518.0" AnchorPane.topAnchor="3.0">
                      <image>
                         <Image url="@../upload.png" />
                      </image>
                   </ImageView>
                   <ButtonBar maxHeight="20.0" maxWidth="275.0" prefHeight="20.0" prefWidth="275.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0">
                      <buttons>
-                        <Button mnemonicParsing="false" onAction="#profileSelect" text="Profile">
+                        <Button fx:id="regViewButton" mnemonicParsing="false" onAction="#regViewSelect" text="Profile">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#logoutSelect" text="Logout">
+                        <Button fx:id="logButton" mnemonicParsing="false" onAction="#logSelect" text="Logout">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -55,7 +55,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Label fx:id="searchTerm" disable="true" layoutX="259.0" layoutY="4.0" text="Search Term">
+                  <Label fx:id="searchTerm" layoutX="259.0" layoutY="4.0" text="Search Term">
                      <font>
                         <Font size="14.0" />
                      </font>

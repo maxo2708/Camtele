@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,6 +22,23 @@ public class editUserController {
     @FXML private TextArea bioInput;
     @FXML private ImageView avatar;
 
+    @FXML void attemptLogin(ActionEvent event) throws Exception{
+        Account accAttempt = Main.accounts.get(unInput.getText());
+        if (accAttempt != null) {
+            boolean loggedIn = accAttempt.checkPassword(pwdInput.getText());
+            if (loggedIn) {
+                Main.currentAcc = accAttempt;
+                ((Node)(event.getSource())).getScene().getWindow().hide();
+                Main.replaceBigScene("feed.fxml");
+            } else {
+                Main.error = "Password is incorrect. \nPlease try again or select forgot password.";
+                Main.openNewStage("error.fxml");
+            }
+        } else {
+            Main.error = "Cannot find that user account. \nPlease try again or register.";
+            Main.openNewStage("error.fxml");
+        }
+    }
     @FXML void createAccount(ActionEvent event) throws Exception {
         if (unInput.getText().length() > 0 && pwdInput.getText().length() > 0 && sqInput.getText().length() > 0) {
             Main.currentAcc = new Account(unInput.getText(), pwdInput.getText(), sqInput.getText());
@@ -28,8 +46,8 @@ public class editUserController {
             ((Node) (event.getSource())).getScene().getWindow().hide();
             Main.replaceSmallScene("profile.fxml");
         } else {
+            Main.error = "Couldn't create new user.";
             Main.openNewStage("error.fxml");
-            //TODO: Else throw some error indication
         }
     }
     @FXML void avatarSelect(MouseEvent event) {
@@ -38,10 +56,31 @@ public class editUserController {
             avatar.setImage(new Image(file.toURI().toString()));
         }
     }
+    @FXML void replaceRegister(ActionEvent event) throws Exception {
+        Main.replaceSmallScene("signup.fxml"); //todo still doesnt replace??
+    }
+    @FXML void forgotPasswordSelect(ActionEvent event) throws Exception{
+        Main.openNewStage("forgotPassword.fxml");
+    }
+    @FXML void changePassword(ActionEvent event) throws  Exception{
+        Account account = Main.accounts.get(unInput.getText());
+        if (account != null && account.checkSecurityAnswer(sqInput.getText())) {
+            account.setPassword(pwdInput.getText());
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        } else if (account == null){
+            Main.error = "Couldn't change password! \nUser not found.";
+            Main.openNewStage("error.fxml");
+        } else if (!account.checkSecurityAnswer(sqInput.getText())) {
+            Main.error = "Couldn't change password! \nIncorrect security response.";
+            Main.openNewStage("error.fxml");
+        } else {
+            Main.error = "Couldn't change password!";
+            Main.openNewStage("error.fxml");
+        }
+    }
     @FXML void finishProfile(ActionEvent event) throws Exception {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        Main.selectAcc = Main.currentAcc; // todo check if okay
-
+        Main.selectAcc = Main.currentAcc;
         if (!nnInput.getText().equals("")) {
             Main.currentAcc.setNickname(nnInput.getText());
         } if (!bioInput.getText().equals("")) {
@@ -59,7 +98,7 @@ public class editUserController {
             } if (!Main.currentAcc.getBio().equals("")) {
                 bioInput.setPromptText(Main.currentAcc.getBio());
             } if (!Main.currentAcc.getAvatar().equals("")) {
-                avatar.setImage(new Image(Main.currentAcc.getAvatar())); // todo ???? who knows
+                avatar.setImage(new Image(Main.currentAcc.getAvatar()));
             }
 
         }

@@ -48,6 +48,8 @@ public class Post implements Serializable, Comparable {
         this.imageURI = uri;
     }
     public void setDescription(String desc) {
+        this.description = desc;
+        System.out.println(this);
         for (int i = 0; i < desc.length(); i++) {
             if (desc.charAt(i) == '#') {
                 for (int k = i; k < desc.length(); k++) {
@@ -60,7 +62,7 @@ public class Post implements Serializable, Comparable {
                 }
             }
         }
-        this.description = desc;
+
     }
     public void addComment(Comment com) {
        this.coms.add(com);

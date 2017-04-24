@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PostController {
@@ -20,12 +22,12 @@ public class PostController {
     @FXML private TextField commInput;
     @FXML private TextArea description;
     @FXML private Label username, likes, date, locTag;
-    @FXML private Button editLikeButton, logButton, commentButton;
+    @FXML private Button editLikeButton, regViewButton, logButton, commentButton;
 
     @FXML private Label user1, date1, comment1,
     user2, date2, comment2, user3, date3, comment3,
     user4, date4, comment4, user5, date5, comment5;
-    private ArrayList<Label> coms;
+    private ArrayList<Label> comms;
 
     @FXML void editLikePost(ActionEvent event) throws Exception{
         if (Main.currentAcc.equals(Main.selectAcc)) {
@@ -41,9 +43,6 @@ public class PostController {
                 likes.setText(Main.currentPost.getLikes().size() + " Likes");
             }
         }
-    }
-    @FXML void likeComment(ActionEvent event) {
-
     }
     @FXML void addComment(ActionEvent event) {
         Main.currentPost.addComment(new Comment(Main.currentAcc.getUsername(), commInput.getText()));
@@ -65,19 +64,19 @@ public class PostController {
             }
         } else if (search.getText().charAt(0) == '#') {
             Main.currentTag = Main.accounts.getTag().get(search.getText().substring(1));
-            if (Main.currentAcc != null) {
-                Main.replaceBigScene("registered.fxml");
-            } else {
-                Main.replaceBigScene("Unregistered.fxml");
-            }
+            Main.replaceBigScene("feed.fxml");
         }
 
     }
-    @FXML void feedSelect(ActionEvent event) throws Exception{
+    @FXML void feedSelect(MouseEvent event) throws Exception {
+        Main.replaceBigScene("feed.fxml");
+    }
+    @FXML void regViewSelect(ActionEvent event) throws Exception{
         if (Main.currentAcc == null) {
-            Main.replaceBigScene("Unregistered.fxml");
+            Main.openNewStage("signup.fxml");
         } else {
-            Main.replaceBigScene("registered.fxml");
+            Main.selectAcc = Main.currentAcc;
+            Main.replaceBigScene("userProfile.fxml");
         }
     }
     @FXML void logSelect(ActionEvent event) throws Exception{
@@ -85,7 +84,7 @@ public class PostController {
             Main.openNewStage("login.fxml");
         } else {
             Main.currentAcc = null;
-            Main.replaceBigScene("Unregistered.fxml");
+            Main.replaceBigScene("feed.fxml");
         }
     }
     @FXML void createPost(MouseEvent event) throws Exception{
@@ -98,28 +97,39 @@ public class PostController {
         description.setText(Main.currentPost.getDescription());
         username.setText(Main.currentPost.getAuthor());
         likes.setText(Main.currentPost.getLikes().size() + " Likes");
-        date.setText(Main.currentPost.getTimeCreated().toString());
+        date.setText(formatDate(Main.currentPost.getTimeCreated()));
         locTag.setText(Main.currentPost.getLocation());
 
         // Establish array of comment labels
-        coms = new ArrayList<Label>();
-        coms.add(user1); coms.add(date1); coms.add(comment1);
-        coms.add(user2); coms.add(date2); coms.add(comment2);
-        coms.add(user3); coms.add(date3); coms.add(comment3);
-        coms.add(user4); coms.add(date4); coms.add(comment4);
-        coms.add(user5); coms.add(date5); coms.add(comment5);
-
+        comms = new ArrayList<Label>();
+        comms.add(user1); comms.add(date1); comms.add(comment1);
+        comms.add(user2); comms.add(date2); comms.add(comment2);
+        comms.add(user3); comms.add(date3); comms.add(comment3);
+        comms.add(user4); comms.add(date4); comms.add(comment4);
+        comms.add(user5); comms.add(date5); comms.add(comment5);
         setComments();
+        hideComments();
     }
     private void setComments() {
-        for (int i = 0; i < Math.min(Main.currentPost.getComments().size(), coms.size() / 3); i++) {
+        for (int i = 0; i < Math.min(Main.currentPost.getComments().size(), comms.size() / 3); i++) {
             // user
-            coms.get(i * 3).setText(Main.currentPost.getComments().get(i).getFrom());
+            comms.get(i * 3).setText(Main.currentPost.getComments().get(i).getFrom());
             // date
-            coms.get((i * 3) + 1).setText(Main.currentPost.getComments().get(i).getTimeCreated().toString());
+            comms.get((i * 3) + 1).setText(formatDate(Main.currentPost.getComments().get(i).getTimeCreated()));
             // content
-            coms.get((i * 3) + 2).setText(Main.currentPost.getComments().get(i).getMessageBody());
+            comms.get((i * 3) + 2).setText(Main.currentPost.getComments().get(i).getMessageBody());
         }
+    }
+    private void hideComments() {
+        for (int i = 0; i < comms.size(); i++) {
+            if (comms.get(i).getText().equals(comms.get(i).getId())) {
+                comms.get(i).setText("");
+            }
+        }
+    }
+    private String formatDate(LocalDateTime oldDate) {
+        String newDate = oldDate.format(DateTimeFormatter.ofPattern("MM.dd HH:mm"));
+        return newDate;
     }
 
     public void initialize() {
@@ -128,13 +138,12 @@ public class PostController {
         if (Main.currentAcc == null) {
             newPost.setDisable(true);
             newPost.setOpacity(0);
-            locTag.setDisable(true);
             commentButton.setDisable(true);
-            editLikeButton.setDisable(true);
+            editLikeButton.setOpacity(0);
+            regViewButton.setText("Register");
             logButton.setText("Login");
-
-
         } else {
+            regViewButton.setText("Profile");
             if (Main.currentAcc.equals(Main.selectAcc)) {
                 editLikeButton.setText("Edit");
             } else {

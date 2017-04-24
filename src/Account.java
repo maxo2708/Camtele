@@ -79,6 +79,9 @@ public class Account implements Serializable, Comparable {
             // Add user to followers array
             this.followers.add(acc);
 
+            // Add that the user is following this user
+            acc.getFollowing().add(this);
+
             listeners.add(listener);
             // Notify user of new follower
             this.notifs.add(new Notification("New Follower", acc.getNickname()));

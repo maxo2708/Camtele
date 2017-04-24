@@ -25,6 +25,7 @@ public class editPostController {
     }
     @FXML void uploadPost(ActionEvent event) throws Exception{
         if (Main.currentPost == null) {
+            System.out.println(Main.accounts);
             Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText());
             post.setLocation(locInput.getText());
             Main.currentAcc.getPosts().add(post);
@@ -32,7 +33,7 @@ public class editPostController {
         } else {
             if (!descInput.getText().equals("")) {
             Main.currentPost.setDescription(descInput.getText());
-            }
+            } //todo set location
         }
         ((Node)(event.getSource())).getScene().getWindow().hide();
         Main.replaceBigScene("viewPost.fxml");

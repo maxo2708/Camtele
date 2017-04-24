@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 import java.io.*;
 
 public class Main extends Application {
-    // Clare is awesome :)
 
     static Post currentPost;
     static Accounts accounts;
     static Account currentAcc, selectAcc;
     static Tag currentTag;
+    static String error;
     private static Stage base, popup;
     private static Parent root;
 
@@ -37,9 +37,9 @@ public class Main extends Application {
         if (Main.accounts == null) {
             Main.accounts = new Accounts();
         }
+        setTestUsers();
 
-        //accounts = new Accounts();
-        root = FXMLLoader.load(getClass().getResource("display/Unregistered.fxml"));
+        root = FXMLLoader.load(getClass().getResource("display/feed.fxml"));
         base = primaryStage;
         primaryStage.setTitle("Camtele");
         Scene scene = new Scene(root, 600, 400);
@@ -61,7 +61,7 @@ public class Main extends Application {
 
     static void openNewStage(String fxml) throws Exception{
         try {
-            AnchorPane page = FXMLLoader.load((Main.class.getResource("display/" + fxml)));
+            AnchorPane page = FXMLLoader.load(Main.class.getResource("display/" + fxml));
             popup = new Stage();
             popup.setTitle("Camtele");
             popup.setScene(new Scene(page));
@@ -85,18 +85,37 @@ public class Main extends Application {
         }
     }
 
-    /* static void replaceBigPC(String fxml, Account account) throws Exception{
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("display/" + fxml));
-            Parent page = fxmlLoader.load();
-            PostController postController = fxmlLoader.<PostController>getController();
-            postController.setAccount(account);
-            base.setScene(new Scene(page, 600, 400));
-            base.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+    static void setTestUsers() {
+        // tester user
+        if (accounts.get("socialsloth") == null) {
+            Account art = new Account("socialsloth", "bradypus", "allofem");
+            art.setAvatar("file:/C:/Users/Clare/Pictures/1Camtele/ORASTrainer.png");
+            art.setNickname("Juju");
+            art.setBio("This is my art blog. uwu \nCatch me on dA and tumblr as well!");
+            accounts.add(art);
         }
-    } */
+        if (accounts.get("Brandon") == null) {
+            Account brandon = new Account("Brandon", "password", "red");
+            brandon.setAvatar("file:/C:/Users/Clare/Pictures/1Camtele/brandon1.jpg");
+            brandon.setNickname("brozek");
+            brandon.setBio("This is my only social media account.");
+            accounts.add(brandon);
+        }
+        if (accounts.get("sneakysnek") == null) {
+            Account snek = new Account("sneakysnek", "slither", "green");
+            snek.setAvatar("file:/C:/Users/Clare/Pictures/1Camtele/snake4.jpg");
+            snek.setNickname("pythonprojectpartner");
+            snek.setBio("Hissssssss");
+            accounts.add(snek);
+        }
+        if (accounts.get("immortalhuskyboy") == null) {
+            Account husky = new Account("immortalhuskyboy", "barkbark", "white");
+            husky.setAvatar("file:/C:/Users/Clare/Pictures/1Camtele/huskyprofile.jpg");
+            husky.setNickname("huskee");
+            husky.setBio("Cats aren't the only ones with 9 lives.");
+            accounts.add(husky);
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
