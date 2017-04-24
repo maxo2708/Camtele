@@ -22,6 +22,16 @@ public class Tags implements Listing<Tag>, Serializable {
     public Tag get(int index) {
         return this.tags.get(index);
     }
+    public Tag get(String tagname) {
+        for (Tag t: this.tags) {
+            if (t.getName().equals(tagname)) {
+                return t;
+            }
+        }
+        Tag newTag = new Tag(tagname);
+        this.tags.add(newTag);
+        return newTag;
+    }
 
     public int size() { return this.tags.size(); }
 

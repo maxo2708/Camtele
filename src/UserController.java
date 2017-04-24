@@ -43,9 +43,24 @@ public class UserController {
         }
     }
 
-    @FXML
-    void searchSelect(ActionEvent event) {
-        //todo open registered with search term passed
+    @FXML void searchSelect(ActionEvent event) throws Exception{
+        if (search.getText().equals("")) {
+            return;
+        }
+        if (search.getText().charAt(0) == '@') {
+            Main.selectAcc = Main.accounts.get(search.getText().substring(1));
+            if (Main.selectAcc != null) {
+                Main.replaceBigScene("userProfile.fxml");
+            }
+        } else if (search.getText().charAt(0) == '#') {
+            Main.currentTag = Main.accounts.getTag().get(search.getText().substring(1));
+            if (Main.currentAcc != null) {
+                Main.replaceBigScene("registered.fxml");
+            } else {
+                Main.replaceBigScene("Unregistered.fxml");
+            }
+        }
+
     }
 
     @FXML

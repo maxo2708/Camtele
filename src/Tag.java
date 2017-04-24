@@ -1,4 +1,6 @@
-public class Tag implements Comparable {
+import java.io.Serializable;
+
+public class Tag implements Comparable, Serializable {
     Posts postings;
     String name;
     public Tag(String name) {

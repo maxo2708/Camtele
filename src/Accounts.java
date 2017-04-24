@@ -4,9 +4,11 @@ import java.util.Collections;
 
 public class Accounts implements Listing<Account>, Serializable {
     private ArrayList<Account> accs;
+    private Tags tags;
     
     public Accounts() {
         accs = new ArrayList<Account>();
+        tags = new Tags();
     }
 
     public boolean add(Account acc) {
@@ -25,6 +27,7 @@ public class Accounts implements Listing<Account>, Serializable {
         }
         return null;
     }
+    public Tags getTag() { return this.tags; }
     public int indexOf(String username) {
         for (int i = 0; i < accs.size(); i++) {
             if (accs.get(i).getUsername().equals(username)) {

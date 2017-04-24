@@ -91,19 +91,23 @@ public class Controller {
     }
 
     @FXML void searchSelect(ActionEvent event) throws Exception{
-        //searchTerm.setText(search.getText());
+        if (search.getText().equals("")) {
+            return;
+        }
         if (search.getText().charAt(0) == '@') {
             Main.selectAcc = Main.accounts.get(search.getText().substring(1));
             if (Main.selectAcc != null) {
                 Main.replaceBigScene("userProfile.fxml");
             }
+        } else if (search.getText().charAt(0) == '#') {
+            Main.currentTag = Main.accounts.getTag().get(search.getText().substring(1));
+            if (Main.currentAcc != null) {
+                Main.replaceBigScene("registered.fxml");
+            } else {
+                Main.replaceBigScene("Unregistered.fxml");
+            }
         }
-        /*
-        if (Main.currentAcc != null) {
-            Main.replaceBigScene("registered.fxml");
-        } else {
-            Main.replaceBigScene("Unregistered.fxml");
-        } */
+
     }
     @FXML void logoutSelect(ActionEvent event) throws Exception{
         Main.currentAcc = null;
@@ -139,14 +143,20 @@ public class Controller {
         }
     }
     public void initialize () {
-        if (Main.currentAcc != null) {
-            posts = Main.currentAcc.getFeed();
-        } else {
-            // Get posts from all of the users
-            posts = new Posts();
-            for (int i = 0; i < Main.accounts.size(); i++) {
-                posts.add(Main.accounts.get(i).getPosts());
+        if (Main.currentTag == null) {
+            if (Main.currentAcc != null) {
+                posts = Main.currentAcc.getFeed();
+            } else {
+                // Get posts from all of the users
+                posts = new Posts();
+                for (int i = 0; i < Main.accounts.size(); i++) {
+                    posts.add(Main.accounts.get(i).getPosts());
+                }
             }
+        } else {
+            searchTerm.setText(Main.currentTag.getName());
+            posts = Main.currentTag.getPosts();
+            Main.currentTag = null;
         }
         setImages();
     }

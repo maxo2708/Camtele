@@ -14,6 +14,7 @@ public class Main extends Application {
     static Post currentPost;
     static Accounts accounts;
     static Account currentAcc, selectAcc;
+    static Tag currentTag;
     private static Stage base, popup;
     private static Parent root;
 

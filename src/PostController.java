@@ -55,7 +55,22 @@ public class PostController {
         Main.replaceBigScene("userProfile.fxml");
     }
     @FXML void searchSelect(ActionEvent event) throws Exception{
-        searchTerm.setText(search.getText());
+        if (search.getText().equals("")) {
+            return;
+        }
+        if (search.getText().charAt(0) == '@') {
+            Main.selectAcc = Main.accounts.get(search.getText().substring(1));
+            if (Main.selectAcc != null) {
+                Main.replaceBigScene("userProfile.fxml");
+            }
+        } else if (search.getText().charAt(0) == '#') {
+            Main.currentTag = Main.accounts.getTag().get(search.getText().substring(1));
+            if (Main.currentAcc != null) {
+                Main.replaceBigScene("registered.fxml");
+            } else {
+                Main.replaceBigScene("Unregistered.fxml");
+            }
+        }
 
     }
     @FXML void feedSelect(ActionEvent event) throws Exception{
@@ -124,7 +139,7 @@ public class PostController {
                 editLikeButton.setText("Edit");
             } else {
                 if (Main.currentPost.getLikes().get(Main.currentAcc.getUsername()) == null) {
-                    editLikeButton.setText("Like"); // todo check like/dislike based on current user
+                    editLikeButton.setText("Like");
                 } else {
                     editLikeButton.setText("Dislike");
                 }

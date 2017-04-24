@@ -14,7 +14,7 @@ public class Post implements Serializable, Comparable {
     // Keep track of who likes the post here
     public Post(Account acc, String imageURI, String description) {
         this.imageURI = imageURI;
-        this.description = description;
+        this.setDescription(description);
         this.timeCreated = LocalDateTime.now();
         this.coms = new Comments();
         this.listeners = new ArrayList<>();
@@ -48,6 +48,18 @@ public class Post implements Serializable, Comparable {
         this.imageURI = uri;
     }
     public void setDescription(String desc) {
+        for (int i = 0; i < desc.length(); i++) {
+            if (desc.charAt(i) == '#') {
+                for (int k = i; k < desc.length(); k++) {
+                    if (desc.charAt(k) == ' ') {
+                        Main.accounts.getTag().get(desc.substring(i + 1, k)).getPosts().add(this);
+                    } else if (k == desc.length() - 1) {
+                        // Add post to the tag
+                        Main.accounts.getTag().get(desc.substring(i + 1, k + 1)).getPosts().add(this);
+                    }
+                }
+            }
+        }
         this.description = desc;
     }
     public void addComment(Comment com) {
