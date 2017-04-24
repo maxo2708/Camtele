@@ -22,27 +22,29 @@ public class UserController {
     @FXML
     private ImageView avatar, newPost, image1, image2, image3;
 
-    @FXML
-    void editFollowAccount(ActionEvent event) throws Exception {
+    @FXML void editFollowAccount(ActionEvent event) throws Exception {
         if (Main.currentAcc.equals(Main.selectAcc)) {
             Main.openNewStage("profile.fxml");
         } else {
             if (editFollowButton.getText().equals("Follow")) {
-                // todo and so on...
+                Main.selectAcc.follow(Main.currentAcc, null);
+                editFollowButton.setText("Unfollow");
+            } else {
+                System.out.println(Main.selectAcc.getFollowers().remove(Main.currentAcc.getUsername()));
+                editFollowButton.setText("Follow");
             }
+            followers.setText(Main.selectAcc.getFollowers().size() + " Followers");
         }
 
     } // varied button on user profile
 
-    @FXML
-    void feedSelect(ActionEvent event) throws Exception {
+    @FXML void feedSelect(ActionEvent event) throws Exception {
         if (Main.currentAcc == null) {
             Main.replaceBigScene("Unregistered.fxml");
         } else {
             Main.replaceBigScene("registered.fxml");
         }
     }
-
     @FXML void searchSelect(ActionEvent event) throws Exception{
         if (search.getText().equals("")) {
             return;
@@ -62,9 +64,7 @@ public class UserController {
         }
 
     }
-
-    @FXML
-    void logSelect(ActionEvent event) throws Exception {
+    @FXML void logSelect(ActionEvent event) throws Exception {
         if (Main.currentAcc == null) {
             Main.openNewStage("login.fxml");
         } else {
@@ -73,37 +73,29 @@ public class UserController {
         }
     }
 
-    @FXML
-    void selectImage1(MouseEvent event) throws Exception {
+    @FXML void selectImage1(MouseEvent event) throws Exception {
         if (Main.selectAcc.getPosts().size() >= 1) {
             Main.currentPost = Main.selectAcc.getPosts().get(0);
             Main.openNewStage("viewPost.fxml");
         }
     }
-
-    @FXML
-    void selectImage2(MouseEvent event) throws Exception {
+    @FXML void selectImage2(MouseEvent event) throws Exception {
         if (Main.selectAcc.getPosts().size() >= 2) {
             Main.currentPost = Main.selectAcc.getPosts().get(1);
             Main.openNewStage("viewPost.fxml");
         }
     }
-
-    @FXML
-    void selectImage3(MouseEvent event) throws Exception {
+    @FXML void selectImage3(MouseEvent event) throws Exception {
         if (Main.selectAcc.getPosts().size() >= 3) {
             Main.currentPost = Main.selectAcc.getPosts().get(2);
             Main.openNewStage("viewPost.fxml");
         }
     }
-
-    @FXML
-    void displayTagged(ActionEvent event) {
+    @FXML void displayTagged(ActionEvent event) {
         // todo make tagged screen
     }
 
-    @FXML
-    void createPost(MouseEvent event) throws Exception {
+    @FXML void createPost(MouseEvent event) throws Exception {
         Main.currentPost = null;
         Main.openNewStage("post.fxml");
     }
@@ -120,7 +112,6 @@ public class UserController {
         following.setText(acc.getFollowing().size() + " Following");
         setImages(acc);
     }
-
     private void setImages(Account acc) {
         if (acc.getPosts().size() >= 1) {
             image1.setImage(new Image(acc.getPosts().get(0).getImageURI()));
@@ -145,7 +136,11 @@ public class UserController {
                 editFollowButton.setText("Edit");
                 tagged.setText("Photos of You");
             } else {
-                editFollowButton.setText("Follow"); // todo based on user
+                if (Main.selectAcc.getFollowers().get(Main.currentAcc.getUsername()) == null) {
+                    editFollowButton.setText("Follow");
+                } else {
+                    editFollowButton.setText("Unfollow");
+                }
                 tagged.setText("Photos of " + username.getText());
             }
         }

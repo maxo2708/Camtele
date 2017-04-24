@@ -86,11 +86,6 @@
                                        <children>
                                           <Label fx:id="user1" text="user1" />
                                           <Label fx:id="date1" text="date1" />
-                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
-                                             <font>
-                                                <Font size="9.0" />
-                                             </font>
-                                          </Button>
                                           <Label fx:id="comment1" text="comment1" />
                                        </children>
                                     </HBox>
@@ -98,11 +93,6 @@
                                        <children>
                                           <Label fx:id="user2" text="user2" />
                                           <Label fx:id="date2" text="date2" />
-                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
-                                             <font>
-                                                <Font size="9.0" />
-                                             </font>
-                                          </Button>
                                           <Label fx:id="comment2" text="comment2" />
                                        </children>
                                     </HBox>
@@ -110,11 +100,6 @@
                                        <children>
                                           <Label fx:id="user3" text="user3" />
                                           <Label fx:id="date3" text="date3" />
-                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
-                                             <font>
-                                                <Font size="9.0" />
-                                             </font>
-                                          </Button>
                                           <Label fx:id="comment3" text="comment3" />
                                        </children>
                                     </HBox>
@@ -122,11 +107,6 @@
                                        <children>
                                           <Label fx:id="user4" text="user4" />
                                           <Label fx:id="date4" text="date4" />
-                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
-                                             <font>
-                                                <Font size="9.0" />
-                                             </font>
-                                          </Button>
                                           <Label fx:id="comment4" text="comment4" />
                                        </children>
                                     </HBox>
@@ -134,11 +114,6 @@
                                        <children>
                                           <Label fx:id="user5" text="user5" />
                                           <Label fx:id="date5" text="date5" />
-                                          <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#likeComment" text="Like">
-                                             <font>
-                                                <Font size="9.0" />
-                                             </font>
-                                          </Button>
                                           <Label fx:id="comment5" text="comment5" />
                                        </children>
                                     </HBox>
