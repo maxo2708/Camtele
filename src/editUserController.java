@@ -34,12 +34,14 @@ public class editUserController {
     }
     @FXML void avatarSelect(MouseEvent event) {
         file = fileChooser.showOpenDialog(((Node) (event.getSource())).getScene().getWindow());
-        avatar.setImage(new Image(file.toURI().toString())); //todo may be broken? Brandon: Do you ever store this URI in a javafx variable?
+        if (file != null) {
+            avatar.setImage(new Image(file.toURI().toString()));
+        }
     }
     @FXML void finishProfile(ActionEvent event) throws Exception {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Main.selectAcc = Main.currentAcc; // todo check if okay
-        Main.replaceBigScene("userProfile.fxml");
+
         if (!nnInput.getText().equals("")) {
             Main.currentAcc.setNickname(nnInput.getText());
         } if (!bioInput.getText().equals("")) {
@@ -47,6 +49,7 @@ public class editUserController {
         } if (file != null) {
             Main.currentAcc.setAvatar(file.toURI().toString());
         }
+        Main.replaceBigScene("userProfile.fxml");
     } // user
 
     public void initialize() {

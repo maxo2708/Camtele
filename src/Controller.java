@@ -54,7 +54,6 @@ public class Controller {
     }
 
     @FXML void selectImage1(MouseEvent event) throws Exception{
-        System.out.println(posts);
         if (posts.size() >= 1) {
             Main.currentPost = posts.get(0);
             Main.openNewStage("viewPost.fxml");
@@ -62,7 +61,6 @@ public class Controller {
     }
     @FXML void selectImage2(MouseEvent event) throws Exception{
         if (posts.size() >= 2) {
-            System.out.println("Size of posts: " + posts.size());
             Main.currentPost = posts.get(1);
             Main.openNewStage("viewPost.fxml");
         }

@@ -21,12 +21,14 @@ public class editPostController {
 
     @FXML void selectPhoto(MouseEvent event) {
         file = fileChooser.showOpenDialog(((Node)(event.getSource())).getScene().getWindow());
-        newImage.setImage(new Image(file.toURI().toString())); // todo what is this?
+        newImage.setImage(new Image(file.toURI().toString()));
     }
     @FXML void uploadPost(ActionEvent event) throws Exception{
         if (Main.currentPost == null) {
-            Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText()); // todo poor loctag
+            Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText());
+            post.setLocation(locInput.getText());
             Main.currentAcc.getPosts().add(post);
+            Main.currentPost = post;
         } else {
             if (!descInput.getText().equals("")) {
             Main.currentPost.setDescription(descInput.getText());
@@ -40,7 +42,7 @@ public class editPostController {
         if (Main.currentPost != null) {
             newImage.setImage(new Image(Main.currentPost.getImageURI()));
             descInput.setPromptText(Main.currentPost.getDescription());
-            // todo locInput
+            locInput.setPromptText(Main.currentPost.getLocation());
         }
     }
 }

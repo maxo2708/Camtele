@@ -60,24 +60,24 @@ public class UserController {
 
     @FXML
     void selectImage1(MouseEvent event) throws Exception {
-        if (Main.currentAcc.getPosts().size() >= 1) {
-            Main.currentPost = Main.currentAcc.getPosts().get(0);
+        if (Main.selectAcc.getPosts().size() >= 1) {
+            Main.currentPost = Main.selectAcc.getPosts().get(0);
             Main.openNewStage("viewPost.fxml");
         }
     }
 
     @FXML
     void selectImage2(MouseEvent event) throws Exception {
-        if (Main.currentAcc.getPosts().size() >= 2) {
-            Main.currentPost = Main.currentAcc.getPosts().get(1);
+        if (Main.selectAcc.getPosts().size() >= 2) {
+            Main.currentPost = Main.selectAcc.getPosts().get(1);
             Main.openNewStage("viewPost.fxml");
         }
     }
 
     @FXML
     void selectImage3(MouseEvent event) throws Exception {
-        if (Main.currentAcc.getPosts().size() >= 3) {
-            Main.currentPost = Main.currentAcc.getPosts().get(2);
+        if (Main.selectAcc.getPosts().size() >= 3) {
+            Main.currentPost = Main.selectAcc.getPosts().get(2);
             Main.openNewStage("viewPost.fxml");
         }
     }

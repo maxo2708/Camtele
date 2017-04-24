@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+
 public class PostController {
 
     @FXML private TextField search;
@@ -23,6 +25,7 @@ public class PostController {
     @FXML private Label user1, date1, comment1,
     user2, date2, comment2, user3, date3, comment3,
     user4, date4, comment4, user5, date5, comment5;
+    private ArrayList<Label> coms;
 
     @FXML void editLikePost(ActionEvent event) throws Exception{
         if (Main.currentAcc.equals(Main.selectAcc)) {
@@ -44,9 +47,11 @@ public class PostController {
     }
     @FXML void addComment(ActionEvent event) {
         Main.currentPost.addComment(new Comment(Main.currentAcc.getUsername(), commInput.getText()));
+        setComments();
     } // posts
 
     @FXML void userSelect(MouseEvent event) throws Exception{
+        Main.selectAcc = Main.accounts.get(username.getText());
         Main.replaceBigScene("userProfile.fxml");
     }
     @FXML void searchSelect(ActionEvent event) {
@@ -78,6 +83,27 @@ public class PostController {
         username.setText(Main.currentPost.getAuthor());
         likes.setText(Main.currentPost.getLikes().size() + " Likes");
         date.setText(Main.currentPost.getTimeCreated().toString());
+        locTag.setText(Main.currentPost.getLocation());
+
+        // Establish array of comment labels
+        coms = new ArrayList<Label>();
+        coms.add(user1); coms.add(date1); coms.add(comment1);
+        coms.add(user2); coms.add(date2); coms.add(comment2);
+        coms.add(user3); coms.add(date3); coms.add(comment3);
+        coms.add(user4); coms.add(date4); coms.add(comment4);
+        coms.add(user5); coms.add(date5); coms.add(comment5);
+
+        setComments();
+    }
+    private void setComments() {
+        for (int i = 0; i < Math.min(Main.currentPost.getComments().size(), coms.size() / 3); i++) {
+            // user
+            coms.get(i * 3).setText(Main.currentPost.getComments().get(i).getFrom());
+            // date
+            coms.get((i * 3) + 1).setText(Main.currentPost.getComments().get(i).getTimeCreated().toString());
+            // content
+            coms.get((i * 3) + 2).setText(Main.currentPost.getComments().get(i).getMessageBody());
+        }
     }
 
     public void initialize() {
@@ -90,7 +116,8 @@ public class PostController {
             commentButton.setDisable(true);
             editLikeButton.setDisable(true);
             logButton.setText("Login");
-            // todo locTag
+
+
         } else {
             if (Main.currentAcc.equals(Main.selectAcc)) {
                 editLikeButton.setText("Edit");

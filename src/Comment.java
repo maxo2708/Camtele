@@ -68,6 +68,6 @@ public class Comment implements Serializable, Comparable {
     }
     public int compareTo(Object obj) {
         Comment c2 = (Comment) obj;
-        return this.getTimeCreated().compareTo(c2.getTimeCreated());
+        return c2.getTimeCreated().compareTo(this.getTimeCreated());
     }
 }
