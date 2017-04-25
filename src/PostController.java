@@ -45,8 +45,10 @@ public class PostController {
         }
     }
     @FXML void addComment(ActionEvent event) {
-        Main.currentPost.addComment(new Comment(Main.currentAcc.getUsername(), commInput.getText()));
-        setComments();
+        if (!commInput.getText().isEmpty()) {
+            Main.currentPost.addComment(new Comment(Main.currentAcc.getUsername(), commInput.getText()));
+            setComments();
+        }
     } // posts
 
     @FXML void userSelect(MouseEvent event) throws Exception{

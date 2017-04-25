@@ -125,8 +125,9 @@ public class Account implements Serializable, Comparable {
         return this.feed;
     }
     private void updateFeed() {
+        this.feed = new Posts();
         for (int i = 0; i < this.getFollowing().size(); i++) {
-            feed.add(this.getFollowing().get(i).getPosts());
+            this.feed.add(this.getFollowing().get(i).getPosts());
         }
     }
 

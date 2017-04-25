@@ -25,7 +25,6 @@ public class editPostController {
     }
     @FXML void uploadPost(ActionEvent event) throws Exception{
         if (Main.currentPost == null) {
-            System.out.println(Main.accounts);
             Post post = new Post(Main.currentAcc, file.toURI().toString(), descInput.getText());
             post.setLocation(locInput.getText());
             Main.currentAcc.getPosts().add(post);
